@@ -1,0 +1,196 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary: var(--primary);
+  --color-primary-700: var(--primary-700);
+  --color-primary-800: var(--primary-800);
+
+  --color-background: var(--bg-base);
+  --color-background-alt: var(--bg-alt);
+  --color-foreground: var(--text-base);
+  --color-foreground-bold: var(--text-bold);
+  --color-muted-foreground: var(--text-muted);
+  --color-border: var(--border-base);
+}
+
+@layer base {
+  :root, [data-theme="medicalBlue"] {
+    --primary-50: #eff6ff;
+    --primary-100: #dbeafe;
+    --primary-200: #bfdbfe;
+    --primary-300: #93c5fd;
+    --primary-400: #60a5fa;
+    --primary: #2563eb;
+    --primary-700: #1d4ed8;
+    --primary-800: #1e40af;
+
+    --bg-base: #ffffff;
+    --bg-alt: #f8fafc;
+    --text-base: #1e293b;
+    --text-bold: #0f172a;
+    --text-muted: #64748b;
+    --border-base: #e2e8f0;
+  }
+
+  [data-theme="physiotherapyGreen"] {
+    --primary-50: #f0fdfa;
+    --primary-100: #ccfbf1;
+    --primary-200: #99f6e4;
+    --primary-300: #5eead4;
+    --primary-400: #2dd4bf;
+    --primary: #0d9488;
+    --primary-700: #0f766e;
+    --primary-800: #115e59;
+
+    --bg-base: #ffffff;
+    --bg-alt: #f0fdf4;
+    --text-base: #1f2937;
+    --text-bold: #111827;
+    --text-muted: #4b5563;
+    --border-base: #e5e7eb;
+  }
+
+  [data-theme="premiumDark"] {
+    --primary-50: #1e293b;
+    --primary-100: #334155;
+    --primary-200: #475569;
+    --primary-300: #64748b;
+    --primary-400: #94a3b8;
+    --primary: #14b8a6;
+    --primary-700: #0d9488;
+    --primary-800: #0f766e;
+
+    --bg-base: #0f172a;
+    --bg-alt: #1e293b;
+    --text-base: #f1f5f9;
+    --text-bold: #ffffff;
+    --text-muted: #94a3b8;
+    --border-base: #334155;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans antialiased text-foreground bg-background transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-16 md:py-24 px-4 sm:px-6 lg:px-8;
+  }
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl;
+  }
+  .btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-3 px-8 rounded-full transition-all duration-300;
+  }
+  .btn-whatsapp {
+    @apply bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl;
+  }
+  .card {
+    @apply bg-background rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-border;
+  }
+}
+
+/* Performance: GPU-accelerated transforms for smoother animations */
+.event-marquee-track,
+.marquee-track {
+  will-change: transform;
+}
+
+/* ===== Marquee Animations ===== */
+
+/* Team specialty marquee - scrolls right to left */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee-scroll 25s linear infinite;
+  width: max-content;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Events horizontal marquee - scrolls right to left */
+@keyframes event-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.event-marquee-track {
+  animation: event-marquee 30s linear infinite;
+  width: max-content;
+}
+
+.event-marquee-track.paused,
+.event-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Smooth border-left for expanded bio */
+.border-l-3 {
+  border-left-width: 3px;
+}
+
+/* ===== Scroll Animations ===== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fade-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fade-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.zoom-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.zoom-in.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Utility delays for staggered animations */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
