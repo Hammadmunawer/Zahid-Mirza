@@ -69,7 +69,7 @@ export const TEAM_DATA = [
     specialty: 'Physiotherapy & Rehabilitation',
     experience: '2+ Years',
     bio: 'Dr. Haseeb is a dedicated physiotherapist at PhysioGrow Clinic & Academy. With his DPT qualification and commitment to patient care, he provides comprehensive physiotherapy treatments including manual therapy, exercise therapy, and rehabilitation programs. He works closely with patients to help them recover from injuries, manage pain, and restore mobility.',
-    image: '/assets/team/dr-haseeb.jpg',
+    image: '/assets/team/dr-haessb.jpeg',
     social: {
       linkedin: '#',
     }
