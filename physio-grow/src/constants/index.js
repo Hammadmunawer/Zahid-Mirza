@@ -10,7 +10,7 @@ export const DOCTOR_INFO = {
   coFounder: 'Dr. Rumman Mehar',
   phone: '+92 308 6010520',
   whatsapp: '+92 308 6010520',
-  email: 'info@physiogrow.pk',
+  email: 'info@pysiogrow.pk',
   address: 'PhysioGrow Clinic & Academy, Street 10 Basement, Gulshan Block, Allama Iqbal Town, Lahore, 54000',
   clinicTimings: 'Monday - Saturday: 10:00 AM - 8:00 PM',
   googleMapsUrl: 'https://maps.google.com/maps?width=100%25&height=600&hl=en&q=PhysioGrow%20Clinic%20%26%20Academy%2C%20Street%2010%20Basement%2C%20Gulshan%20Block%2C%20Allama%20Iqbal%20Town%2C%20Lahore%2C%2054000&t=&z=15&ie=UTF8&iwloc=B&output=embed',
