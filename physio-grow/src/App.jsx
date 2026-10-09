@@ -1,10 +1,12 @@
 import { lazy, Suspense, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import AboutDoctor from './components/AboutDoctor';
+import Services from './components/Services';
+import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
 
-// Lazy load below-fold components for faster initial load
-const AboutDoctor = lazy(() => import('./components/AboutDoctor'));
-const Services = lazy(() => import('./components/Services'));
+// Lazy load below-fold components
 const Team = lazy(() => import('./components/Team'));
 const WhyChooseUs = lazy(() => import('./components/WhyChooseUs'));
 const Events = lazy(() => import('./components/Events'));
@@ -12,8 +14,8 @@ const Reviews = lazy(() => import('./components/Reviews'));
 const AppointmentForm = lazy(() => import('./components/AppointmentForm'));
 const FAQ = lazy(() => import('./components/FAQ'));
 const Contact = lazy(() => import('./components/Contact'));
-const Footer = lazy(() => import('./components/Footer'));
-const WhatsAppButton = lazy(() => import('./components/WhatsAppButton'));
+
+const SectionFallback = () => <div className="h-32 bg-background" />;
 
 function App() {
   useEffect(() => {
@@ -51,22 +53,32 @@ function App() {
       <Navbar />
       <main className="flex-grow">
         <Hero />
-        <Suspense fallback={<div className="h-20" />}>
-          <AboutDoctor />
-          <Services />
+        <AboutDoctor />
+        <Services />
+        <Suspense fallback={<SectionFallback />}>
           <Team />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
           <WhyChooseUs />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
           <Events />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
           <Reviews />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
           <AppointmentForm />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
           <FAQ />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
           <Contact />
         </Suspense>
       </main>
-      <Suspense fallback={null}>
-        <Footer />
-        <WhatsAppButton />
-      </Suspense>
+      <Footer />
+      <WhatsAppButton />
     </div>
   );
 }
