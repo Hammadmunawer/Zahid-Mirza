@@ -29,7 +29,6 @@ export const NAV_LINKS = [
   { name: 'Services', href: '#services' },
   { name: 'Team', href: '#team' },
   { name: 'Events', href: '#events' },
-  { name: 'Reviews', href: '#reviews' },
   { name: 'FAQ', href: '#faq' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -69,11 +68,38 @@ export const TEAM_DATA = [
     specialty: 'Physiotherapy & Rehabilitation',
     experience: '2+ Years',
     bio: 'Dr. Haseeb is a dedicated physiotherapist at PhysioGrow Clinic & Academy. With his DPT qualification and commitment to patient care, he provides comprehensive physiotherapy treatments including manual therapy, exercise therapy, and rehabilitation programs. He works closely with patients to help them recover from injuries, manage pain, and restore mobility.',
-    image: '/assets/team/dr-haessb.jpeg',
+    image: '/assets/team/haseeb1.jpeg',
     social: {
       linkedin: '#',
     }
+  },
+  {
+      id: 4,
+    name: 'Dr Wajeeha Saeed',
+    designation: 'Physiotherapist',
+    qualification: 'DPT (Doctor of Physical Therapy)',
+    specialty: 'Musculoskeletal & Sports Rehabilitation',
+    experience: '2+ Years',
+    bio: 'Dr Wajeeha Saeed is a dedicated physiotherapist at PhysioGrow Clinic and Academy, committed to providing patient-centered care and evidence-based rehabilitation. She specializes in musculoskeletal rehabilitation, sports injuries, pain management, manual therapy, and therapeutic exercise. Her goal is to help patients recover from injuries, restore mobility, improve physical function, and enhance their overall quality of life through personalized physiotherapy treatment plans.',
+    image: '/assets/team/wajiha.jpeg',
+    social: {
+      linkedin: '#',
+    }
+  },
+{
+  id: 5,
+  name: 'Huma Tahir',
+  designation: 'Consultant Speech-Language Pathologist',
+  qualification: 'MS SLP (Riphah International University)',
+  specialty: 'Speech & Language Therapy',
+  experience: 'Not specified',
+  bio: "Huma Tahir is a Consultant Speech-Language Pathologist at PhysioGrow Clinic and Academy, dedicated to helping children overcome speech, language, and communication challenges. She provides support for speech and language delays, stuttering and fluency disorders, articulation and phonological disorders, voice and resonance issues, and communication difficulties associated with ASD, Down syndrome, and hearing loss. Through individualized, child-centered therapy, she helps children develop communication skills, build confidence, and connect more effectively with the world.",
+  image: '/assets/team/huma-tahir.jpeg',
+  social: {
+    linkedin: '#',
   }
+}
+
 ];
 
 export const EVENTS_DATA = [

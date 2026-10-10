@@ -43,7 +43,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#0f172a] text-gray-300">
       <div className="container-max section-padding pb-8">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12">
           {/* Column 1 - About */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">

@@ -35,6 +35,8 @@ export default defineConfig({
   },
   // Enable gzip-like compression awareness
   server: {
+    port: 5173,
+    strictPort: true,
     headers: {
       'Cache-Control': 'public, max-age=31536000',
     },

@@ -20,7 +20,7 @@ const AboutDoctor = () => {
             </div>
 
             {/* Experience Badge */}
-            <div className="absolute bottom-4 right-4 lg:right-0 bg-primary text-white rounded-2xl p-4 shadow-lg zoom-in delay-400">
+            <div className="absolute bottom-4 right-4 sm:right-0 bg-primary text-white rounded-2xl p-4 shadow-lg zoom-in delay-400">
               <p className="text-3xl font-bold">4+</p>
               <p className="text-sm">Years Experience</p>
             </div>
@@ -37,9 +37,8 @@ const AboutDoctor = () => {
 
             <p className="text-muted-foreground leading-relaxed text-lg">
               <span className="font-semibold text-foreground">{DOCTOR_INFO.name}</span> is a trusted 
-              physiotherapist in Lahore, providing evidence-based physiotherapy and rehabilitation 
-              services at <span className="font-semibold text-foreground">{DOCTOR_INFO.clinicName}</span>. 
-              We specialize in the treatment of{' '}
+              physiotherapist providing the best <strong>physiotherapy in Lahore</strong>. Operating at <span className="font-semibold text-foreground">{DOCTOR_INFO.clinicName}</span>, 
+              we specialize in the treatment of{' '}
               <span className="font-semibold text-foreground">back pain, neck pain, knee pain, sports injuries, 
               frozen shoulder, sciatica, arthritis, post-surgical rehabilitation, stroke rehabilitation, 
               and posture correction</span>.

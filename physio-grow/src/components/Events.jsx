@@ -27,7 +27,7 @@ const EventMarquee = ({ events, onSelect }) => {
 
       <div 
         ref={trackRef}
-        className="overflow-hidden"
+        className="overflow-hidden w-full"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >

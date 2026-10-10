@@ -10,7 +10,6 @@ import WhatsAppButton from './components/WhatsAppButton';
 const Team = lazy(() => import('./components/Team'));
 const WhyChooseUs = lazy(() => import('./components/WhyChooseUs'));
 const Events = lazy(() => import('./components/Events'));
-const Reviews = lazy(() => import('./components/Reviews'));
 const AppointmentForm = lazy(() => import('./components/AppointmentForm'));
 const FAQ = lazy(() => import('./components/FAQ'));
 const Contact = lazy(() => import('./components/Contact'));
@@ -49,7 +48,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
+    <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300 overflow-x-hidden w-full max-w-[100vw]">
       <Navbar />
       <main className="flex-grow">
         <Hero />
@@ -63,9 +62,6 @@ function App() {
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <Events />
-        </Suspense>
-        <Suspense fallback={<SectionFallback />}>
-          <Reviews />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <AppointmentForm />

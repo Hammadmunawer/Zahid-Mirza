@@ -19,17 +19,16 @@ const Hero = () => {
             </div>
 
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground-bold leading-tight">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-foreground-bold leading-tight">
                 {DOCTOR_INFO.name}
               </h1>
-              <p className="text-xl sm:text-2xl text-primary font-semibold">
+              <p className="text-lg sm:text-2xl text-primary font-semibold leading-snug">
                 {DOCTOR_INFO.role} — {DOCTOR_INFO.clinicName}
               </p>
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
-                {DOCTOR_INFO.qualification}. Award-winning physiotherapist recognized as the
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-lg">
+                {DOCTOR_INFO.qualification}. Award-winning specialist recognized as the
                 {' '}<span className="font-semibold text-foreground">"Best Physiotherapist in Pakistan"</span>.
-                Helping patients recover, move better, and live pain-free through
-                evidence-based treatment.
+                Offering top-rated <strong>physiotherapy in Lahore</strong> to help you recover, move better, and live pain-free through evidence-based treatment.
               </p>
             </div>
 

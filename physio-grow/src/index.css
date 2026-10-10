@@ -75,9 +75,11 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   body {
     @apply font-sans antialiased text-foreground bg-background transition-colors duration-300;
+    overflow-x: hidden;
   }
 }
 
@@ -108,7 +110,25 @@
   will-change: transform;
 }
 
+/* ===== Utility Classes ===== */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* ===== Marquee Animations ===== */
+
+/* Team card carousel fade-in */
+@keyframes fade-in-card {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in-card 0.35s ease both;
+}
 
 /* Team specialty marquee - scrolls right to left */
 @keyframes marquee-scroll {
