@@ -214,3 +214,23 @@
 .delay-400 { transition-delay: 400ms; }
 .delay-500 { transition-delay: 500ms; }
 
+/* Preloader ECG lifeline animation */
+@keyframes ecg-draw {
+  0% {
+    stroke-dashoffset: 200;
+    opacity: 0.3;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -200;
+    opacity: 0.3;
+  }
+}
+
+.ecg-pulse-anim {
+  animation: ecg-draw 1.4s ease-in-out infinite;
+}
+

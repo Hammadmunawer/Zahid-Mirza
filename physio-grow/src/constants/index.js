@@ -42,7 +42,7 @@ export const TEAM_DATA = [
     specialty: 'Musculoskeletal & Sports Rehabilitation',
     experience: '4+ Years',
     bio: 'Dr. Zahid Mirza is a trusted physiotherapist in Lahore, providing evidence-based physiotherapy and rehabilitation services at PhysioGrow Clinic. We specialize in the treatment of back pain, neck pain, knee pain, sports injuries, frozen shoulder, sciatica, arthritis, post-surgical rehabilitation, stroke rehabilitation, and posture correction. Our patient-focused approach combines detailed assessment, personalized treatment plans, manual therapy, exercise therapy, and modern rehabilitation techniques to help you recover faster and move pain-free. Whether you\'re recovering from an injury or managing chronic pain, PhysioGrow Clinic is committed to restoring your mobility, strength, and quality of life in a professional and caring environment.',
-    image: '/assets/team/dr-zahid.jpg',
+    image: '/assets/team/dr-zahid.jpg?v=2',
     social: {
       linkedin: '#',
     }

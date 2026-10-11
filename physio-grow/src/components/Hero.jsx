@@ -69,7 +69,7 @@ const Hero = () => {
           <div className="relative hidden lg:block fade-right delay-200">
             <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-primary-50">
               <img 
-                src="/assets/team/dr-zahid.jpg" 
+                src="/assets/team/dr-zahid.jpg?v=2" 
                 alt={DOCTOR_INFO.name} 
                 className="w-full h-full object-cover"
                 width="600"

@@ -5,6 +5,7 @@ import AboutDoctor from './components/AboutDoctor';
 import Services from './components/Services';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import Preloader from './components/Preloader';
 
 // Lazy load below-fold components
 const Team = lazy(() => import('./components/Team'));
@@ -49,6 +50,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300 overflow-x-hidden w-full max-w-[100vw]">
+      <Preloader />
       <Navbar />
       <main className="flex-grow">
         <Hero />
