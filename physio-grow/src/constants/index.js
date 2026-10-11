@@ -104,6 +104,15 @@ export const TEAM_DATA = [
 
 export const EVENTS_DATA = [
   {
+    id: 15,
+    title: 'PhysioGrow Clinical Team — Specialists & Therapists',
+    date: '2026',
+    location: 'PhysioGrow Clinic & Academy, Lahore',
+    category: 'Events',
+    description: 'Dr. Zahid Ghaffar Mirza and the complete clinical rehabilitation team at PhysioGrow Clinic & Academy, Lahore. A dedicated multidisciplinary team working together for patient recovery and pain-free living.',
+    image: '/assets/team/physiogrow-team-group.jpg'
+  },
+  {
     id: 1,
     title: 'Best Physiotherapist Award by Minister of Law',
     date: '2024',

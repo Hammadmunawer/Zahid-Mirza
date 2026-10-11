@@ -283,6 +283,29 @@ const Team = () => {
         <p className="text-center text-xs text-muted-foreground mt-3">
           Swipe or use arrows to explore our team
         </p>
+
+        {/* Full Team Group Showcase Banner */}
+        <div className="mt-12 relative rounded-3xl overflow-hidden shadow-2xl border border-border group">
+          <div className="relative aspect-[16/10] sm:aspect-[21/9] w-full overflow-hidden bg-primary-950">
+            <img
+              src="/assets/team/physiogrow-team-group.jpg"
+              alt="PhysioGrow Clinic & Academy Clinical Team"
+              className="w-full h-full object-cover object-top sm:object-center group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-6 sm:p-10 text-white">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 bg-primary text-white text-xs font-bold rounded-full w-fit mb-2 shadow-lg">
+                PhysioGrow Family
+              </span>
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 drop-shadow-md">
+                One Team, One Mission: Restoring Your Movement
+              </h3>
+              <p className="text-xs sm:text-sm text-gray-200 max-w-2xl leading-relaxed drop-shadow">
+                Our clinical team at PhysioGrow Clinic &amp; Academy combines specialized expertise in sports medicine, spine adjustment, musculoskeletal rehab, and manual therapy to deliver outstanding patient outcomes.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Profile Modal */}
