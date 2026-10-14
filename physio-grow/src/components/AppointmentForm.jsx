@@ -1,6 +1,18 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { Calendar, Clock, Send, CheckCircle, MessageCircle } from 'lucide-react';
 import { DOCTOR_INFO, getWhatsAppUrl } from '../constants';
+
+// ─── EmailJS Configuration ───────────────────────────────────────────────────
+// After creating EmailJS account, replace these values:
+// 1. Go to https://www.emailjs.com → Sign Up (free)
+// 2. Add Email Service → Connect Gmail → copy Service ID
+// 3. Create Email Template → copy Template ID
+// 4. Account → API Keys → copy Public Key
+const EMAILJS_SERVICE_ID  = 'service_xqhcd3h';
+const EMAILJS_TEMPLATE_ID = 'template_f8qv5ni';
+const EMAILJS_PUBLIC_KEY  = 'lHIMESutzVXiLnK_K';
+// ─────────────────────────────────────────────────────────────────────────────
 
 const AppointmentForm = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +28,7 @@ const AppointmentForm = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const validate = () => {
     const newErrors = {};
@@ -39,6 +52,7 @@ const AppointmentForm = () => {
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
+    if (submitError) setSubmitError('');
   };
 
   const handleSubmit = async (e) => {
@@ -50,17 +64,29 @@ const AppointmentForm = () => {
     }
 
     setIsSubmitting(true);
+    setSubmitError('');
 
-    // Simulate API call - replace with actual API endpoint
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      // TODO: Send formData to backend API
-      // const response = await fetch('/api/appointments', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // });
-      console.log('Appointment Data:', formData);
+      // Send email via EmailJS to zahidmirza156@gmail.com
+      const templateParams = {
+        from_name:      formData.fullName,
+        from_phone:     formData.phone,
+        from_email:     formData.email || 'Not provided',
+        preferred_date: formData.preferredDate,
+        preferred_time: formData.preferredTime || 'Not specified',
+        treatment:      formData.treatment,
+        message:        formData.message || 'No additional message',
+        to_email:       'zahidmirza156@gmail.com',
+        reply_to:       formData.email || 'zahidmirza156@gmail.com',
+      };
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
       setIsSubmitted(true);
       setFormData({
         fullName: '',
@@ -72,7 +98,8 @@ const AppointmentForm = () => {
         message: '',
       });
     } catch (error) {
-      console.error('Submission error:', error);
+      console.error('Email send error:', error);
+      setSubmitError('Failed to send appointment request. Please try WhatsApp or call us directly.');
     } finally {
       setIsSubmitting(false);
     }
@@ -321,6 +348,13 @@ const AppointmentForm = () => {
                   </>
                 )}
               </button>
+
+              {/* Error message */}
+              {submitError && (
+                <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm text-center">
+                  {submitError}
+                </div>
+              )}
             </form>
           </div>
         </div>
