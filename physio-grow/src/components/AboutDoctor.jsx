@@ -10,7 +10,7 @@ const AboutDoctor = () => {
           <div className="relative fade-right delay-100">
             <div className="relative w-full aspect-square max-w-md mx-auto rounded-3xl overflow-hidden bg-primary-50 shadow-lg">
               <img 
-                src="/assets/team/dr-zahid.jpg?v=2" 
+                src="/assets/team/dr-zahid.jpg?v=3" 
                 alt={DOCTOR_INFO.name} 
                 className="w-full h-full object-cover"
                 loading="lazy"

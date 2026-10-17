@@ -42,7 +42,7 @@ export const TEAM_DATA = [
     specialty: 'Musculoskeletal & Sports Rehabilitation',
     experience: '4+ Years',
     bio: 'Dr. Zahid Mirza is a trusted physiotherapist in Lahore, providing evidence-based physiotherapy and rehabilitation services at PhysioGrow Clinic. We specialize in the treatment of back pain, neck pain, knee pain, sports injuries, frozen shoulder, sciatica, arthritis, post-surgical rehabilitation, stroke rehabilitation, and posture correction. Our patient-focused approach combines detailed assessment, personalized treatment plans, manual therapy, exercise therapy, and modern rehabilitation techniques to help you recover faster and move pain-free. Whether you\'re recovering from an injury or managing chronic pain, PhysioGrow Clinic is committed to restoring your mobility, strength, and quality of life in a professional and caring environment.',
-    image: '/assets/team/dr-zahid.jpg?v=2',
+    image: '/assets/team/dr-zahid.jpg?v=3',
     social: {
       linkedin: '#',
     }
@@ -55,7 +55,7 @@ export const TEAM_DATA = [
     specialty: 'Expert in Spine Adjustment',
     experience: '4+ Years',
     bio: 'Dr. Rumman Mehar is a skilled female physiotherapist and the co-founder of PhysioGrow Clinic & Academy with over 4 years of clinical experience. With a Doctor of Physical Therapy (DPT) degree and a Master\'s in Sports & Medicine Physiotherapy, she specializes in spine adjustment and postural correction. Her expertise in spinal rehabilitation and manual therapy helps patients achieve lasting relief from back pain, neck pain, and spinal disorders.',
-    image: '/assets/team/dr-rumman-mehar.jpg',
+    image: '/assets/team/dr-rumman-mehar.jpg?v=2',
     social: {
       linkedin: '#',
     }
@@ -68,7 +68,7 @@ export const TEAM_DATA = [
     specialty: 'Physiotherapy & Rehabilitation',
     experience: '2+ Years',
     bio: 'Dr. Haseeb is a dedicated physiotherapist at PhysioGrow Clinic & Academy. With his DPT qualification and commitment to patient care, he provides comprehensive physiotherapy treatments including manual therapy, exercise therapy, and rehabilitation programs. He works closely with patients to help them recover from injuries, manage pain, and restore mobility.',
-    image: '/assets/team/haseeb1.jpeg',
+    image: '/assets/team/dr-haseeb.jpg',
     social: {
       linkedin: '#',
     }
@@ -81,7 +81,7 @@ export const TEAM_DATA = [
     specialty: 'Musculoskeletal & Sports Rehabilitation',
     experience: '2+ Years',
     bio: 'Dr Wajeeha Saeed is a dedicated physiotherapist at PhysioGrow Clinic and Academy, committed to providing patient-centered care and evidence-based rehabilitation. She specializes in musculoskeletal rehabilitation, sports injuries, pain management, manual therapy, and therapeutic exercise. Her goal is to help patients recover from injuries, restore mobility, improve physical function, and enhance their overall quality of life through personalized physiotherapy treatment plans.',
-    image: '/assets/team/wajiha.jpeg',
+    image: '/assets/team/dr-wajeeha.jpg',
     social: {
       linkedin: '#',
     }
