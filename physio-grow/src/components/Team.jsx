@@ -13,7 +13,7 @@ const TeamCard = ({ member, onViewProfile }) => {
             <img
               src={member.image}
               alt={member.name}
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-cover object-center"
               loading="lazy"
               width="320"
               height="320"
@@ -288,7 +288,7 @@ const Team = () => {
         <div className="mt-12 relative rounded-3xl overflow-hidden shadow-2xl border border-border group">
           <div className="relative aspect-[16/10] sm:aspect-[21/9] w-full overflow-hidden bg-primary-950">
             <img
-              src="/assets/team/physiogrow-team-group.jpg"
+              src="/assets/team/physiogrow-team-group.jpg?v=2"
               alt="PhysioGrow Clinic & Academy Clinical Team"
               className="w-full h-full object-cover object-top sm:object-center group-hover:scale-105 transition-transform duration-700"
               loading="lazy"

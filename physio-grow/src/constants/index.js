@@ -55,7 +55,7 @@ export const TEAM_DATA = [
     specialty: 'Expert in Spine Adjustment',
     experience: '4+ Years',
     bio: 'Dr. Rumman Mehar is a skilled female physiotherapist and the co-founder of PhysioGrow Clinic & Academy with over 4 years of clinical experience. With a Doctor of Physical Therapy (DPT) degree and a Master\'s in Sports & Medicine Physiotherapy, she specializes in spine adjustment and postural correction. Her expertise in spinal rehabilitation and manual therapy helps patients achieve lasting relief from back pain, neck pain, and spinal disorders.',
-    image: '/assets/team/dr-rumman-mehar.jpg?v=2',
+    image: '/assets/team/dr-rumman-mehar.jpg?v=3',
     social: {
       linkedin: '#',
     }
@@ -94,7 +94,7 @@ export const TEAM_DATA = [
   specialty: 'Speech & Language Therapy',
   experience: 'Not specified',
   bio: "Huma Tahir is a Consultant Speech-Language Pathologist at PhysioGrow Clinic and Academy, dedicated to helping children overcome speech, language, and communication challenges. She provides support for speech and language delays, stuttering and fluency disorders, articulation and phonological disorders, voice and resonance issues, and communication difficulties associated with ASD, Down syndrome, and hearing loss. Through individualized, child-centered therapy, she helps children develop communication skills, build confidence, and connect more effectively with the world.",
-  image: '/assets/team/huma-tahir.jpeg',
+  image: '/assets/team/huma-tahir.jpg?v=2',
   social: {
     linkedin: '#',
   }
