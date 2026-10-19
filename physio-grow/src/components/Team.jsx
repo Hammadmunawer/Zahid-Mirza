@@ -286,14 +286,15 @@ const Team = () => {
 
         {/* Full Team Group Showcase Banner */}
         <div className="mt-12 relative rounded-3xl overflow-hidden shadow-2xl border border-border group">
-          <div className="relative aspect-[16/10] sm:aspect-[21/9] w-full overflow-hidden bg-primary-950">
+          <div className="relative w-full overflow-hidden bg-primary-950" style={{ height: '420px' }}>
             <img
               src="/assets/team/physiogrow-team-group.jpg?v=2"
               alt="PhysioGrow Clinic & Academy Clinical Team"
-              className="w-full h-full object-cover object-top sm:object-center group-hover:scale-105 transition-transform duration-700"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              style={{ objectPosition: 'center 20%' }}
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-6 sm:p-10 text-white">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-10 text-white">
               <span className="inline-flex items-center gap-1.5 px-3.5 py-1 bg-primary text-white text-xs font-bold rounded-full w-fit mb-2 shadow-lg">
                 PhysioGrow Family
               </span>
