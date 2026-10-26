@@ -92,9 +92,22 @@ export const TEAM_DATA = [
   designation: 'Consultant Speech-Language Pathologist',
   qualification: 'MS SLP (Riphah International University)',
   specialty: 'Speech & Language Therapy',
-  experience: 'Not specified',
+  experience: '4+ Years',
   bio: "Huma Tahir is a Consultant Speech-Language Pathologist at PhysioGrow Clinic and Academy, dedicated to helping children overcome speech, language, and communication challenges. She provides support for speech and language delays, stuttering and fluency disorders, articulation and phonological disorders, voice and resonance issues, and communication difficulties associated with ASD, Down syndrome, and hearing loss. Through individualized, child-centered therapy, she helps children develop communication skills, build confidence, and connect more effectively with the world.",
   image: '/assets/team/huma-tahir.jpg?v=2',
+  social: {
+    linkedin: '#',
+  }
+},
+{
+  id: 6,
+  name: 'Mauz Mukhtar',
+  designation: 'Orthotist & Prosthetist',
+  qualification: 'Graduated from King Edward Medical University (KEMU), Lahore. 2 years Clinical Training at Mayo Hospital & PSRD Ichra, Lahore.',
+  specialty: 'Prosthetics & Orthotics',
+  experience: '2+ Years',
+  bio: 'Mauz Mukhtar is a qualified Orthotist and Prosthetist at PhysioGrow Clinic & Academy, trained at the prestigious King Edward Medical University (KEMU), Lahore, with clinical training at Mayo Hospital and PSRD Ichra. He specializes in comprehensive prosthetic and orthotic care, including custom prostheses and orthoses, advanced artificial limb solutions, post-amputation rehabilitation, gait training and mobility restoration, orthotic management of limb deformities, spinal and limb orthoses, foot and ankle biomechanical support, postural correction, and functional rehabilitation to help patients regain independence and improve their quality of life.',
+  image: '/assets/team/mauz-mukhtar.jpg',
   social: {
     linkedin: '#',
   }
