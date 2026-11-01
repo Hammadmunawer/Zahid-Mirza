@@ -11,6 +11,7 @@ import Preloader from './components/Preloader';
 const Team = lazy(() => import('./components/Team'));
 const WhyChooseUs = lazy(() => import('./components/WhyChooseUs'));
 const Events = lazy(() => import('./components/Events'));
+const Blog = lazy(() => import('./components/Blog'));
 const AppointmentForm = lazy(() => import('./components/AppointmentForm'));
 const FAQ = lazy(() => import('./components/FAQ'));
 const Contact = lazy(() => import('./components/Contact'));
@@ -64,6 +65,9 @@ function App() {
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <Events />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <Blog />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <AppointmentForm />

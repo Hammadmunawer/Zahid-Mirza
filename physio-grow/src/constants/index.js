@@ -29,6 +29,7 @@ export const NAV_LINKS = [
   { name: 'Services', href: '#services' },
   { name: 'Team', href: '#team' },
   { name: 'Events', href: '#events' },
+  { name: 'Blog', href: '#blog' },
   { name: 'FAQ', href: '#faq' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -92,7 +93,7 @@ export const TEAM_DATA = [
   designation: 'Consultant Speech-Language Pathologist',
   qualification: 'MS SLP (Riphah International University)',
   specialty: 'Speech & Language Therapy',
-  experience: '4+ Years',
+  experience: '25+ Years',
   bio: "Huma Tahir is a Consultant Speech-Language Pathologist at PhysioGrow Clinic and Academy, dedicated to helping children overcome speech, language, and communication challenges. She provides support for speech and language delays, stuttering and fluency disorders, articulation and phonological disorders, voice and resonance issues, and communication difficulties associated with ASD, Down syndrome, and hearing loss. Through individualized, child-centered therapy, she helps children develop communication skills, build confidence, and connect more effectively with the world.",
   image: '/assets/team/huma-tahir.jpg?v=2',
   social: {
@@ -361,3 +362,154 @@ export const getWhatsAppUrl = () => {
   const message = encodeURIComponent(WHATSAPP_MESSAGE);
   return `https://wa.me/${phone}?text=${message}`;
 };
+
+export const BLOG_DATA = [
+  {
+    id: 1,
+    slug: 'best-physiotherapist-in-lahore',
+    title: 'Best Physiotherapist in Lahore – Why PhysioGrow Clinic Stands Out',
+    category: 'Clinic Guide',
+    date: 'October 2024',
+    readTime: '5 min read',
+    image: null,
+    excerpt: 'Looking for the best physiotherapist in Lahore? PhysioGrow Clinic & Academy offers expert physiotherapy by Dr. Zahid Mirza with 4+ years of experience in musculoskeletal, sports, and neurological rehabilitation.',
+    content: `Finding a qualified and trusted physiotherapist in Lahore can be challenging. At PhysioGrow Clinic & Academy, located in Allama Iqbal Town, Lahore, we provide evidence-based physiotherapy treatment for a wide range of conditions.
+
+**Why Choose PhysioGrow?**
+- Led by Dr. Zahid Mirza (DPT, MS Sports & Medicine Physiotherapy)
+- Co-founded by Dr. Rumman Mehar, specialist in spine adjustment
+- Comprehensive team including orthotist, speech therapist & more
+- Modern rehabilitation techniques & personalized treatment plans
+- Convenient location in Lahore with flexible timings
+
+Whether you're dealing with back pain, sports injuries, or post-surgical recovery, our expert team is here to help you recover faster and live pain-free.`,
+    tags: ['best physiotherapist Lahore', 'physiotherapy Lahore', 'PhysioGrow', 'Dr Zahid Mirza'],
+    icon: '🏆',
+  },
+  {
+    id: 2,
+    slug: 'back-pain-treatment-lahore',
+    title: 'Back Pain Treatment in Lahore – Complete Physiotherapy Guide',
+    category: 'Back Pain',
+    date: 'October 2024',
+    readTime: '6 min read',
+    image: null,
+    excerpt: 'Suffering from back pain in Lahore? Learn how physiotherapy at PhysioGrow Clinic treats lower back pain, disc problems, and sciatica with advanced manual therapy and exercise rehabilitation.',
+    content: `Back pain is one of the most common reasons people visit a physiotherapist in Lahore. Whether it's lower back pain, disc herniation, or sciatica, physiotherapy can provide lasting relief without surgery.
+
+**Common Causes of Back Pain We Treat:**
+- Lower back muscle strain & spasms
+- Lumbar disc herniation (slipped disc)
+- Sciatica (nerve pain down the leg)
+- Spondylosis & postural problems
+- Post-surgical back rehabilitation
+
+**Our Treatment Approach:**
+At PhysioGrow Clinic, Dr. Zahid Mirza uses a combination of manual therapy, therapeutic exercise, dry needling, and postural correction to address the root cause of your back pain — not just the symptoms.
+
+Early physiotherapy treatment can prevent chronic pain and help you return to normal activities faster.`,
+    tags: ['back pain treatment Lahore', 'physiotherapy for back pain', 'lower back pain Lahore', 'sciatica treatment'],
+    icon: '🦴',
+  },
+  {
+    id: 3,
+    slug: 'knee-pain-physiotherapy-lahore',
+    title: 'Knee Pain Treatment in Lahore – Physiotherapy for Knee Problems',
+    category: 'Knee Pain',
+    date: 'October 2024',
+    readTime: '5 min read',
+    image: null,
+    excerpt: 'Knee pain making daily activities difficult? PhysioGrow Clinic in Lahore offers specialized physiotherapy for knee pain, osteoarthritis, ACL injuries, and post-knee surgery rehabilitation.',
+    content: `Knee pain is extremely common and can affect people of all ages. From young athletes to senior citizens, our physiotherapy clinic in Lahore treats a wide spectrum of knee conditions.
+
+**Knee Conditions We Treat:**
+- Osteoarthritis of the knee
+- ACL, MCL & meniscus injuries
+- Patellofemoral pain syndrome (runner's knee)
+- Post total knee replacement rehabilitation
+- Knee ligament sprains & strains
+
+**How Physiotherapy Helps Knee Pain:**
+Our targeted approach includes strengthening exercises for the quadriceps and hamstrings, manual therapy to improve joint mobility, gait training, and education on activity modification to protect your knee during recovery.
+
+Don't let knee pain stop you — book a consultation at PhysioGrow Clinic in Lahore today.`,
+    tags: ['knee pain treatment Lahore', 'knee physiotherapy Lahore', 'osteoarthritis physiotherapy', 'ACL injury Lahore'],
+    icon: '🦵',
+  },
+  {
+    id: 4,
+    slug: 'neck-pain-cervical-treatment-lahore',
+    title: 'Neck Pain & Cervical Spondylosis Treatment in Lahore',
+    category: 'Neck Pain',
+    date: 'October 2024',
+    readTime: '5 min read',
+    image: null,
+    excerpt: 'Neck pain, cervical spondylosis, or stiffness? PhysioGrow Clinic, Lahore offers expert physiotherapy for neck conditions with manual therapy, traction, and targeted exercises.',
+    content: `Neck pain and cervical spondylosis are increasingly common in Lahore, largely due to long screen hours and poor posture. Physiotherapy is one of the most effective treatments for these conditions.
+
+**Neck Conditions We Treat:**
+- Cervical spondylosis (neck arthritis)
+- Neck muscle spasm & stiffness
+- Cervical disc herniation
+- Whiplash injuries
+- Headaches from neck problems (cervicogenic headache)
+
+**Treatment Methods at PhysioGrow:**
+Dr. Rumman Mehar, our spine specialist, uses cervical manual therapy, spine adjustment techniques, therapeutic exercises, and heat/electrotherapy to relieve neck pain and restore full range of motion.
+
+If you're searching for neck pain physiotherapy in Lahore, PhysioGrow Clinic offers expert care with proven results.`,
+    tags: ['neck pain treatment Lahore', 'cervical spondylosis Lahore', 'physiotherapy for neck', 'spine adjustment Lahore'],
+    icon: '🫀',
+  },
+  {
+    id: 5,
+    slug: 'sports-injury-rehabilitation-lahore',
+    title: 'Sports Injury Rehabilitation in Lahore – Get Back to Your Game',
+    category: 'Sports Rehab',
+    date: 'October 2024',
+    readTime: '6 min read',
+    image: null,
+    excerpt: 'Sports injuries in Lahore? PhysioGrow Clinic specializes in sports physiotherapy and rehabilitation for athletes — from ankle sprains to shoulder injuries and post-op recovery.',
+    content: `Sports injuries require specialized physiotherapy to ensure safe and complete recovery. At PhysioGrow Clinic in Lahore, our sports physiotherapy team — led by Dr. Zahid Mirza (MS Sports & Medicine Physiotherapy) — understands the demands of athletic performance.
+
+**Sports Injuries We Treat:**
+- Ankle sprains & ligament injuries
+- Hamstring & quadriceps strains
+- Shoulder rotator cuff injuries
+- Tennis elbow & golfer's elbow
+- ACL, PCL knee injuries
+- Stress fractures & overuse injuries
+
+**Sports Rehabilitation Program:**
+We design individualized rehabilitation programs that focus on pain management, strength restoration, neuromuscular training, and sport-specific conditioning — so you return to your sport stronger than before.
+
+PhysioGrow is the trusted choice for sports injury physiotherapy in Lahore.`,
+    tags: ['sports injury Lahore', 'sports physiotherapy Lahore', 'sports rehabilitation', 'athlete recovery Lahore'],
+    icon: '⚽',
+  },
+  {
+    id: 6,
+    slug: 'physiotherapy-for-stroke-rehabilitation-lahore',
+    title: 'Stroke Rehabilitation in Lahore – Neurological Physiotherapy',
+    category: 'Neurological Rehab',
+    date: 'October 2024',
+    readTime: '5 min read',
+    image: null,
+    excerpt: 'Post-stroke physiotherapy in Lahore can help restore movement, balance, and independence. PhysioGrow Clinic offers specialized neurological rehabilitation for stroke patients.',
+    content: `After a stroke, physiotherapy plays a vital role in helping patients regain movement, balance, and independence. Early and intensive rehabilitation is key to the best outcomes.
+
+**What We Offer for Stroke Patients:**
+- Gait training & walking rehabilitation
+- Upper limb & hand function recovery
+- Balance & coordination exercises
+- Spasticity management
+- Functional independence training
+
+**Why Early Physiotherapy Matters:**
+The brain has remarkable ability to recover (neuroplasticity), especially in the early months after stroke. Our neurological physiotherapy team uses evidence-based techniques to maximize recovery potential.
+
+PhysioGrow Clinic in Lahore provides compassionate, expert stroke rehabilitation close to home — helping patients reclaim their lives.`,
+    tags: ['stroke rehabilitation Lahore', 'neurological physiotherapy Lahore', 'post stroke physiotherapy', 'paralysis treatment Lahore'],
+    icon: '🧠',
+  },
+];
