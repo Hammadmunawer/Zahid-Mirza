@@ -5,7 +5,6 @@ import { Calendar, Clock, Tag, ArrowRight, X, BookOpen, ChevronRight } from 'luc
 /* ───────── Blog Post Modal ───────── */
 const BlogModal = ({ post, onClose }) => {
   if (!post) return null;
-
   const paragraphs = post.content.split('\n\n');
 
   return (
@@ -17,28 +16,44 @@ const BlogModal = ({ post, onClose }) => {
         className="relative w-full max-w-3xl bg-background rounded-3xl overflow-hidden shadow-2xl my-8"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
-        <div className="relative bg-gradient-to-br from-primary to-primary-700 p-8 text-white">
+        {/* Header with real image */}
+        <div className="relative h-56 sm:h-72 overflow-hidden">
+          {post.image ? (
+            <img
+              src={post.image}
+              alt={post.title}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className={`w-full h-full bg-gradient-to-br ${post.bgColor}`} />
+          )}
+          {/* Gradient overlay */}
+          <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent`} />
+
+          {/* Close button */}
           <button
-            className="absolute top-4 right-4 p-2 bg-white/20 hover:bg-white/30 rounded-full transition-colors"
+            className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors"
             onClick={onClose}
           >
             <X size={18} />
           </button>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/20 text-white text-xs font-bold rounded-full mb-4">
-            {post.category}
-          </span>
-          <div className="text-5xl mb-4">{post.icon}</div>
-          <h2 className="text-xl sm:text-2xl font-bold leading-tight mb-4">{post.title}</h2>
-          <div className="flex flex-wrap gap-4 text-sm text-white/80">
-            <span className="flex items-center gap-1.5"><Calendar size={14} />{post.date}</span>
-            <span className="flex items-center gap-1.5"><Clock size={14} />{post.readTime}</span>
+
+          {/* Title overlay on image */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+            <span className={`inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r ${post.bgColor} text-white text-xs font-bold rounded-full mb-3 shadow`}>
+              {post.category}
+            </span>
+            <h2 className="text-lg sm:text-2xl font-bold leading-tight drop-shadow-lg">{post.title}</h2>
+            <div className="flex flex-wrap gap-4 text-xs text-white/80 mt-2">
+              <span className="flex items-center gap-1"><Calendar size={12} />{post.date}</span>
+              <span className="flex items-center gap-1"><Clock size={12} />{post.readTime}</span>
+            </div>
           </div>
         </div>
 
         {/* Content */}
         <div className="p-6 sm:p-8">
-          <div className="prose prose-sm max-w-none text-foreground space-y-4">
+          <div className="space-y-4">
             {paragraphs.map((para, i) => {
               if (para.startsWith('**') && para.endsWith('**')) {
                 return (
@@ -66,9 +81,7 @@ const BlogModal = ({ post, onClose }) => {
                 );
               }
               return (
-                <p key={i} className="text-sm text-muted-foreground leading-relaxed">
-                  {para}
-                </p>
+                <p key={i} className="text-sm text-muted-foreground leading-relaxed">{para}</p>
               );
             })}
           </div>
@@ -88,9 +101,7 @@ const BlogModal = ({ post, onClose }) => {
 
           {/* CTA */}
           <div className="mt-8 p-5 bg-primary-50 rounded-2xl border border-primary-100 text-center">
-            <p className="text-sm font-semibold text-foreground-bold mb-3">
-              Ready to start your recovery?
-            </p>
+            <p className="text-sm font-semibold text-foreground-bold mb-3">Ready to start your recovery?</p>
             <a
               href={getWhatsAppUrl()}
               target="_blank"
@@ -108,41 +119,74 @@ const BlogModal = ({ post, onClose }) => {
 };
 
 /* ───────── Blog Card ───────── */
-const BlogCard = ({ post, onRead }) => (
-  <div className="group bg-background rounded-2xl border border-border shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden flex flex-col h-full fade-up">
-    {/* Icon banner */}
-    <div className="relative h-36 bg-gradient-to-br from-primary-50 to-primary-100 flex items-center justify-center flex-shrink-0 group-hover:from-primary group-hover:to-primary-700 transition-all duration-400">
-      <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{post.icon}</span>
-      <span className="absolute top-3 left-3 inline-flex items-center gap-1 px-2.5 py-1 bg-white/90 text-primary text-xs font-bold rounded-full shadow-sm">
-        {post.category}
-      </span>
-    </div>
+const BlogCard = ({ post, onRead }) => {
+  const [imgError, setImgError] = useState(false);
 
-    {/* Body */}
-    <div className="p-5 flex flex-col flex-grow">
-      <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
-        <span className="flex items-center gap-1"><Calendar size={11} />{post.date}</span>
-        <span className="flex items-center gap-1"><Clock size={11} />{post.readTime}</span>
+  return (
+    <div className="group bg-background rounded-2xl border border-border shadow-sm hover:shadow-xl transition-all duration-400 overflow-hidden flex flex-col h-full fade-up">
+
+      {/* Image banner */}
+      <div className="relative h-48 overflow-hidden flex-shrink-0">
+        {post.image && !imgError ? (
+          <>
+            <img
+              src={post.image}
+              alt={post.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onError={() => setImgError(true)}
+              loading="lazy"
+            />
+            {/* Gradient overlay matching the image tone */}
+            <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent`} />
+          </>
+        ) : (
+          /* Fallback: colored gradient + emoji if image fails */
+          <div className={`w-full h-full bg-gradient-to-br ${post.bgColor} flex items-center justify-center`}>
+            <span className="text-7xl opacity-80 group-hover:scale-110 transition-transform duration-300">
+              {post.icon}
+            </span>
+          </div>
+        )}
+
+        {/* Category badge — always on top */}
+        <span className={`absolute top-3 left-3 inline-flex items-center gap-1 px-2.5 py-1 bg-gradient-to-r ${post.bgColor} text-white text-xs font-bold rounded-full shadow`}>
+          {post.category}
+        </span>
+
+        {/* Emoji badge on real image */}
+        {post.image && !imgError && (
+          <span className="absolute bottom-3 right-3 text-2xl drop-shadow-lg">
+            {post.icon}
+          </span>
+        )}
       </div>
 
-      <h3 className="text-sm font-bold text-foreground-bold mb-2 leading-snug line-clamp-2 group-hover:text-primary transition-colors duration-200">
-        {post.title}
-      </h3>
+      {/* Body */}
+      <div className="p-5 flex flex-col flex-grow">
+        <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
+          <span className="flex items-center gap-1"><Calendar size={11} />{post.date}</span>
+          <span className="flex items-center gap-1"><Clock size={11} />{post.readTime}</span>
+        </div>
 
-      <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3 flex-grow mb-4">
-        {post.excerpt}
-      </p>
+        <h3 className="text-sm font-bold text-foreground-bold mb-2 leading-snug line-clamp-2 group-hover:text-primary transition-colors duration-200">
+          {post.title}
+        </h3>
 
-      <button
-        onClick={() => onRead(post)}
-        className="mt-auto w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-primary-50 hover:bg-primary text-primary hover:text-white rounded-xl transition-all duration-300 font-semibold text-sm"
-      >
-        <BookOpen size={14} />
-        Read Article
-      </button>
+        <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3 flex-grow mb-4">
+          {post.excerpt}
+        </p>
+
+        <button
+          onClick={() => onRead(post)}
+          className="mt-auto w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-primary-50 hover:bg-primary text-primary hover:text-white rounded-xl transition-all duration-300 font-semibold text-sm"
+        >
+          <BookOpen size={14} />
+          Read Article
+        </button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 /* ───────── Main Blog Section ───────── */
 const Blog = () => {
@@ -150,7 +194,6 @@ const Blog = () => {
   const [activeCategory, setActiveCategory] = useState('All');
 
   const categories = ['All', ...new Set(BLOG_DATA.map((p) => p.category))];
-
   const filtered = activeCategory === 'All'
     ? BLOG_DATA
     : BLOG_DATA.filter((p) => p.category === activeCategory);
@@ -160,9 +203,7 @@ const Blog = () => {
       <div className="container-max">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 px-2">
-          <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-2">
-            Health Resources
-          </p>
+          <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-2">Health Resources</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground-bold mb-4">
             Physiotherapy Blog &amp; Guides
           </h2>
@@ -196,14 +237,12 @@ const Blog = () => {
           ))}
         </div>
 
-        {/* SEO disclaimer */}
         <p className="text-center text-xs text-muted-foreground mt-10 max-w-xl mx-auto leading-relaxed">
           PhysioGrow Clinic &amp; Academy — Best Physiotherapy in Lahore. Serving patients across Allama Iqbal Town,
           Gulshan Block, and all over Lahore with evidence-based physiotherapy treatment.
         </p>
       </div>
 
-      {/* Modal */}
       <BlogModal post={selectedPost} onClose={() => setSelectedPost(null)} />
     </section>
   );

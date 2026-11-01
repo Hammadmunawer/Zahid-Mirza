@@ -371,7 +371,8 @@ export const BLOG_DATA = [
     category: 'Clinic Guide',
     date: 'October 2024',
     readTime: '5 min read',
-    image: null,
+    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80',
+    bgColor: 'from-teal-600 to-cyan-700',
     excerpt: 'Looking for the best physiotherapist in Lahore? PhysioGrow Clinic & Academy offers expert physiotherapy by Dr. Zahid Mirza with 4+ years of experience in musculoskeletal, sports, and neurological rehabilitation.',
     content: `Finding a qualified and trusted physiotherapist in Lahore can be challenging. At PhysioGrow Clinic & Academy, located in Allama Iqbal Town, Lahore, we provide evidence-based physiotherapy treatment for a wide range of conditions.
 
@@ -393,7 +394,8 @@ Whether you're dealing with back pain, sports injuries, or post-surgical recover
     category: 'Back Pain',
     date: 'October 2024',
     readTime: '6 min read',
-    image: null,
+    image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80',
+    bgColor: 'from-orange-500 to-red-600',
     excerpt: 'Suffering from back pain in Lahore? Learn how physiotherapy at PhysioGrow Clinic treats lower back pain, disc problems, and sciatica with advanced manual therapy and exercise rehabilitation.',
     content: `Back pain is one of the most common reasons people visit a physiotherapist in Lahore. Whether it's lower back pain, disc herniation, or sciatica, physiotherapy can provide lasting relief without surgery.
 
@@ -418,7 +420,8 @@ Early physiotherapy treatment can prevent chronic pain and help you return to no
     category: 'Knee Pain',
     date: 'October 2024',
     readTime: '5 min read',
-    image: null,
+    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80',
+    bgColor: 'from-blue-600 to-indigo-700',
     excerpt: 'Knee pain making daily activities difficult? PhysioGrow Clinic in Lahore offers specialized physiotherapy for knee pain, osteoarthritis, ACL injuries, and post-knee surgery rehabilitation.',
     content: `Knee pain is extremely common and can affect people of all ages. From young athletes to senior citizens, our physiotherapy clinic in Lahore treats a wide spectrum of knee conditions.
 
@@ -443,7 +446,8 @@ Don't let knee pain stop you — book a consultation at PhysioGrow Clinic in Lah
     category: 'Neck Pain',
     date: 'October 2024',
     readTime: '5 min read',
-    image: null,
+    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80',
+    bgColor: 'from-purple-600 to-violet-700',
     excerpt: 'Neck pain, cervical spondylosis, or stiffness? PhysioGrow Clinic, Lahore offers expert physiotherapy for neck conditions with manual therapy, traction, and targeted exercises.',
     content: `Neck pain and cervical spondylosis are increasingly common in Lahore, largely due to long screen hours and poor posture. Physiotherapy is one of the most effective treatments for these conditions.
 
@@ -468,7 +472,8 @@ If you're searching for neck pain physiotherapy in Lahore, PhysioGrow Clinic off
     category: 'Sports Rehab',
     date: 'October 2024',
     readTime: '6 min read',
-    image: null,
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80',
+    bgColor: 'from-green-600 to-emerald-700',
     excerpt: 'Sports injuries in Lahore? PhysioGrow Clinic specializes in sports physiotherapy and rehabilitation for athletes — from ankle sprains to shoulder injuries and post-op recovery.',
     content: `Sports injuries require specialized physiotherapy to ensure safe and complete recovery. At PhysioGrow Clinic in Lahore, our sports physiotherapy team — led by Dr. Zahid Mirza (MS Sports & Medicine Physiotherapy) — understands the demands of athletic performance.
 
@@ -494,7 +499,8 @@ PhysioGrow is the trusted choice for sports injury physiotherapy in Lahore.`,
     category: 'Neurological Rehab',
     date: 'October 2024',
     readTime: '5 min read',
-    image: null,
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80',
+    bgColor: 'from-rose-600 to-pink-700',
     excerpt: 'Post-stroke physiotherapy in Lahore can help restore movement, balance, and independence. PhysioGrow Clinic offers specialized neurological rehabilitation for stroke patients.',
     content: `After a stroke, physiotherapy plays a vital role in helping patients regain movement, balance, and independence. Early and intensive rehabilitation is key to the best outcomes.
 
