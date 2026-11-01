@@ -15,7 +15,7 @@ const Hero = () => {
           <div className="space-y-8 fade-left delay-100">
             <div className="inline-flex items-center gap-2 bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-medium">
               <Shield size={16} />
-              <span>Trusted Physiotherapy Care in Lahore</span>
+              <span>Best Physiotherapist in Lahore • PhysioGrow</span>
             </div>
 
             <div className="space-y-4">
@@ -23,7 +23,7 @@ const Hero = () => {
                 {DOCTOR_INFO.name}
               </h1>
               <p className="text-lg sm:text-2xl text-primary font-semibold leading-snug">
-                {DOCTOR_INFO.role} — {DOCTOR_INFO.clinicName}
+                {DOCTOR_INFO.role} â€” {DOCTOR_INFO.clinicName}
               </p>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-lg">
                 {DOCTOR_INFO.qualification}. Award-winning specialist recognized as the
