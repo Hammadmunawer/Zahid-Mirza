@@ -21,7 +21,7 @@ const AboutDoctor = () => {
 
             {/* Experience Badge */}
             <div className="absolute bottom-4 right-4 sm:right-0 bg-primary text-white rounded-2xl p-4 shadow-lg zoom-in delay-400">
-              <p className="text-3xl font-bold">4+</p>
+              <p className="text-3xl font-bold">6+</p>
               <p className="text-sm">Years Experience</p>
             </div>
           </div>

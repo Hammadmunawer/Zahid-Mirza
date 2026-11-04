@@ -2,7 +2,7 @@ export const DOCTOR_INFO = {
   name: 'Dr. Zahid Ghaffar Mirza',
   shortName: 'Dr. Zahid Mirza',
   qualification: 'DPT, MS in Sports & Medicine Physiotherapy',
-  experience: '4+ Years of Experience',
+  experience: '6+ Years of Experience',
   title: 'Physiotherapist',
   role: 'Founder & Director',
   location: 'Lahore, Pakistan',
@@ -41,7 +41,7 @@ export const TEAM_DATA = [
     designation: 'Founder & Director',
     qualification: 'DPT, MS in Sports & Medicine Physiotherapy',
     specialty: 'Musculoskeletal & Sports Rehabilitation',
-    experience: '4+ Years',
+    experience: '6+ Years',
     bio: 'Dr. Zahid Mirza is a trusted physiotherapist in Lahore, providing evidence-based physiotherapy and rehabilitation services at PhysioGrow Clinic. We specialize in the treatment of back pain, neck pain, knee pain, sports injuries, frozen shoulder, sciatica, arthritis, post-surgical rehabilitation, stroke rehabilitation, and posture correction. Our patient-focused approach combines detailed assessment, personalized treatment plans, manual therapy, exercise therapy, and modern rehabilitation techniques to help you recover faster and move pain-free. Whether you\'re recovering from an injury or managing chronic pain, PhysioGrow Clinic is committed to restoring your mobility, strength, and quality of life in a professional and caring environment.',
     image: '/assets/team/dr-zahid.jpg?v=3',
     social: {
@@ -54,8 +54,8 @@ export const TEAM_DATA = [
     designation: 'Co-Founder & Physiotherapist',
     qualification: 'DPT, MS in Sports & Medicine Physiotherapy',
     specialty: 'Expert in Spine Adjustment',
-    experience: '4+ Years',
-    bio: 'Dr. Rumman Mehar is a skilled female physiotherapist and the co-founder of PhysioGrow Clinic & Academy with over 4 years of clinical experience. With a Doctor of Physical Therapy (DPT) degree and a Master\'s in Sports & Medicine Physiotherapy, she specializes in spine adjustment and postural correction. Her expertise in spinal rehabilitation and manual therapy helps patients achieve lasting relief from back pain, neck pain, and spinal disorders.',
+    experience: '6+ Years',
+    bio: 'Dr. Rumman Mehar is a skilled female physiotherapist and the co-founder of PhysioGrow Clinic & Academy with over 6 years of clinical experience. With a Doctor of Physical Therapy (DPT) degree and a Master\'s in Sports & Medicine Physiotherapy, she specializes in spine adjustment and postural correction. Her expertise in spinal rehabilitation and manual therapy helps patients achieve lasting relief from back pain, neck pain, and spinal disorders.',
     image: '/assets/team/dr-rumman-mehar.jpg?v=3',
     social: {
       linkedin: '#',
@@ -373,7 +373,7 @@ export const BLOG_DATA = [
     readTime: '5 min read',
     image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80',
     bgColor: 'from-teal-600 to-cyan-700',
-    excerpt: 'Looking for the best physiotherapist in Lahore? PhysioGrow Clinic & Academy offers expert physiotherapy by Dr. Zahid Mirza with 4+ years of experience in musculoskeletal, sports, and neurological rehabilitation.',
+    excerpt: 'Looking for the best physiotherapist in Lahore? PhysioGrow Clinic & Academy offers expert physiotherapy by Dr. Zahid Mirza with 6+ years of experience in musculoskeletal, sports, and neurological rehabilitation.',
     content: `Finding a qualified and trusted physiotherapist in Lahore can be challenging. At PhysioGrow Clinic & Academy, located in Allama Iqbal Town, Lahore, we provide evidence-based physiotherapy treatment for a wide range of conditions.
 
 **Why Choose PhysioGrow?**
