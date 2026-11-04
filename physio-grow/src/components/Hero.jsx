@@ -23,7 +23,7 @@ const Hero = () => {
                 {DOCTOR_INFO.name}
               </h1>
               <p className="text-lg sm:text-2xl text-primary font-semibold leading-snug">
-                {DOCTOR_INFO.role} â€” {DOCTOR_INFO.clinicName}
+                {DOCTOR_INFO.role} — {DOCTOR_INFO.clinicName}
               </p>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-lg">
                 {DOCTOR_INFO.qualification}. Award-winning specialist recognized as the
