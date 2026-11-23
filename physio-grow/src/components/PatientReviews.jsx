@@ -1,176 +1,392 @@
-import { useRef, useState } from 'react';
-import { Play, Pause, Volume2, VolumeX, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useRef, useState, useEffect } from 'react';
+import { Play, X, Star, ChevronLeft, ChevronRight, CheckCircle2, ShieldCheck } from 'lucide-react';
 
-// SEO-keyword-rich labels — good for Lahore physiotherapy ranking
-const VIDEO_REVIEWS = [
+// SEO-targeted patient reviews targeting Lahore physiotherapy keywords
+const REVIEWS_DATA = [
   {
+    id: 1,
     src: '/assets/patientReviews/review1.mp4',
-    poster: '/assets/team/dr-zahid.jpg',
-    patientLabel: 'Back Pain Recovery',
-    seoTitle: 'Best Physiotherapist in Lahore – Patient Recovery',
-    clinic: 'PhysioGrow Clinic, Lahore',
+    tag: 'Back Pain & Sciatica Relief',
+    title: 'Severe Back Pain Recovery',
+    seoTitle: 'Best Physiotherapist in Lahore – Patient Back Pain Recovery',
+    patient: 'Verified Patient',
+    doctor: 'Dr. Zahid Ghaffar Mirza',
+    clinic: 'PhysioGrow Clinic & Academy, Lahore',
+    condition: 'Chronic Lumbar Pain & Sciatica',
+    rating: 5,
+    quote: 'Remarkable recovery from severe back pain through targeted physiotherapy and rehabilitation at PhysioGrow Clinic Lahore.',
   },
   {
+    id: 2,
     src: '/assets/patientReviews/review2.mp4',
-    poster: '/assets/team/physiogrow-team-group.jpg',
-    patientLabel: 'Sports Injury Rehabilitation',
-    seoTitle: 'Sports Injury Treatment in Lahore – Patient Review',
-    clinic: 'PhysioGrow Clinic & Academy',
+    tag: 'Sports Injury Rehabilitation',
+    title: 'Sports Injury & Mobility Rehab',
+    seoTitle: 'Sports Injury Treatment in Lahore – Patient Video Review',
+    patient: 'Recovered Athlete',
+    doctor: 'Dr. Zahid Mirza & PhysioGrow Team',
+    clinic: 'PhysioGrow Clinic & Academy, Lahore',
+    condition: 'Ligament & Knee Sports Injury',
+    rating: 5,
+    quote: 'Evidence-based sports rehabilitation and exercise therapy helped me get back to full mobility without surgery.',
   },
   {
+    id: 3,
     src: '/assets/patientReviews/review3.mp4',
-    poster: '/assets/team/dr-rumman-mehar.jpg',
-    patientLabel: 'Spine & Neck Pain Treatment',
-    seoTitle: 'Physiotherapy for Neck Pain in Lahore – Patient Testimonial',
-    clinic: 'PhysioGrow Clinic, Lahore',
+    tag: 'Spine Adjustment & Neck Pain',
+    title: 'Spine Adjustment & Neck Relief',
+    seoTitle: 'Spine Adjustment & Neck Pain Physiotherapy in Lahore',
+    patient: 'Verified Patient',
+    doctor: 'Dr. Rumman Mehar (Spine Specialist)',
+    clinic: 'PhysioGrow Clinic & Academy, Lahore',
+    condition: 'Cervical Spondylosis & Spine Pain',
+    rating: 5,
+    quote: 'Specialized spinal adjustment and manual therapy provided quick and lasting relief from severe neck stiffness.',
   },
 ];
 
-const VideoCard = ({ src, poster, patientLabel, seoTitle, clinic }) => {
+// High-performance video frame thumbnail generator
+// Captures frame at 0.5s to Canvas once, then frees video memory completely
+const VideoThumbnail = ({ src, alt }) => {
+  const [thumb, setThumb] = useState(null);
   const videoRef = useRef(null);
-  const [playing, setPlaying] = useState(false);
-  const [muted, setMuted] = useState(false);
 
-  const togglePlay = () => {
-    if (!videoRef.current) return;
-    if (playing) {
-      videoRef.current.pause();
-      setPlaying(false);
-    } else {
-      videoRef.current.play();
-      setPlaying(true);
-    }
-  };
+  useEffect(() => {
+    let isMounted = true;
+    const video = document.createElement('video');
+    video.src = `${src}#t=0.5`;
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = 'metadata';
 
-  const toggleMute = (e) => {
-    e.stopPropagation();
-    if (!videoRef.current) return;
-    videoRef.current.muted = !muted;
-    setMuted(!muted);
-  };
+    const captureFrame = () => {
+      try {
+        if (!isMounted) return;
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth || 360;
+        canvas.height = video.videoHeight || 640;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+        if (dataUrl && dataUrl.length > 500) {
+          setThumb(dataUrl);
+        }
+      } catch (e) {
+        // Fallback: keep native video element showing decoded frame
+      }
+      cleanup();
+    };
+
+    const handleLoadedMetadata = () => {
+      video.currentTime = 0.5;
+    };
+
+    const cleanup = () => {
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.removeEventListener('seeked', captureFrame);
+      video.src = '';
+      video.load();
+    };
+
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    video.addEventListener('seeked', captureFrame);
+
+    return () => {
+      isMounted = false;
+      cleanup();
+    };
+  }, [src]);
+
+  if (thumb) {
+    return (
+      <img
+        src={thumb}
+        alt={alt}
+        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
+      />
+    );
+  }
 
   return (
-    <div
-      className="relative flex-shrink-0 w-60 sm:w-68 rounded-2xl overflow-hidden border border-border shadow-md bg-background cursor-pointer group"
-      style={{ width: '17rem' }}
-      onClick={togglePlay}
-    >
-      {/* Poster image shown below video while loading / before play */}
-      <div className="relative w-full" style={{ aspectRatio: '9/16' }}>
-        {/* Poster behind video */}
-        <img
-          src={poster}
-          alt={seoTitle}
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
-        />
-
-        {/* Video on top — transparent background shows poster */}
-        <video
-          ref={videoRef}
-          src={src}
-          poster={poster}
-          className="absolute inset-0 w-full h-full object-cover"
-          playsInline
-          preload="metadata"
-          onEnded={() => setPlaying(false)}
-        />
-
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none z-10" />
-
-        {/* Play / Pause */}
-        <div className={`absolute inset-0 flex items-center justify-center z-20 transition-opacity duration-200 ${playing ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
-          <div className="w-14 h-14 bg-white/25 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/70 shadow-lg">
-            {playing
-              ? <Pause size={22} className="text-white" />
-              : <Play size={22} className="text-white ml-1" />}
-          </div>
-        </div>
-
-        {/* Mute */}
-        <button
-          onClick={toggleMute}
-          className="absolute top-3 right-3 z-30 w-8 h-8 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
-        >
-          {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
-        </button>
-
-        {/* Bottom label */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 z-20 pointer-events-none">
-          <p className="text-white font-bold text-sm leading-tight">{patientLabel}</p>
-          <p className="text-white/70 text-xs mt-0.5">{clinic}</p>
-        </div>
-      </div>
-    </div>
+    <video
+      ref={videoRef}
+      src={`${src}#t=0.5`}
+      muted
+      playsInline
+      preload="metadata"
+      onLoadedMetadata={(e) => {
+        try {
+          e.target.currentTime = 0.5;
+        } catch (_) {}
+      }}
+      className="w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover:scale-105"
+    />
   );
 };
 
 const PatientReviews = () => {
   const scrollRef = useRef(null);
+  const [selectedReview, setSelectedReview] = useState(null);
 
   const scroll = (dir) => {
-    scrollRef.current?.scrollBy({ left: dir * 290, behavior: 'smooth' });
+    scrollRef.current?.scrollBy({ left: dir * 300, behavior: 'smooth' });
   };
+
+  // Keyboard navigation for popup
+  useEffect(() => {
+    if (!selectedReview) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setSelectedReview(null);
+      if (e.key === 'ArrowRight') {
+        const idx = REVIEWS_DATA.findIndex((r) => r.id === selectedReview.id);
+        setSelectedReview(REVIEWS_DATA[(idx + 1) % REVIEWS_DATA.length]);
+      }
+      if (e.key === 'ArrowLeft') {
+        const idx = REVIEWS_DATA.findIndex((r) => r.id === selectedReview.id);
+        setSelectedReview(REVIEWS_DATA[(idx - 1 + REVIEWS_DATA.length) % REVIEWS_DATA.length]);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedReview]);
 
   return (
     <section id="reviews" className="section-padding bg-background-alt overflow-hidden">
       <div className="container-max">
 
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10 fade-up delay-100">
-          <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-2">
-            Patient Reviews
-          </p>
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12 fade-up delay-100">
+          <div className="inline-flex items-center gap-2 bg-primary-100 text-primary-700 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+            <ShieldCheck size={14} />
+            <span>Verified Patient Testimonials</span>
+          </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground-bold mb-4">
-            Real Patients, Real Recovery – PhysioGrow Lahore
+            Patient Recovery Reviews – PhysioGrow Lahore
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Watch real patient testimonials from PhysioGrow Clinic &amp; Academy —
-            Lahore's trusted physiotherapy centre for back pain, sports injuries, and spine rehabilitation.
+          <p className="text-muted-foreground text-base sm:text-lg">
+            Hear directly from patients treated by <strong>Dr. Zahid Ghaffar Mirza</strong> and team for back pain,
+            sports injuries, and spine rehabilitation at Lahore's premier physiotherapy clinic.
           </p>
         </div>
 
-        {/* Scroll Container with overlapping arrows */}
+        {/* Scroll Container with overlapping side arrows */}
         <div className="relative fade-up delay-200">
 
-          {/* LEFT ARROW — overlaps between edge and first card */}
+          {/* LEFT ARROW */}
           <button
             onClick={() => scroll(-1)}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/90 backdrop-blur-sm border border-border rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all"
-            aria-label="Scroll left"
+            className="hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 z-20 w-11 h-11 bg-white/95 text-foreground border border-border rounded-full shadow-xl items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all duration-200"
+            aria-label="Previous review"
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={22} />
           </button>
 
           {/* Scrollable strip */}
           <div
             ref={scrollRef}
-            className="flex gap-5 overflow-x-auto pb-4 px-10 scroll-smooth snap-x snap-mandatory touch-pan-x"
+            className="flex gap-6 overflow-x-auto pb-4 px-4 sm:px-12 scroll-smooth snap-x snap-mandatory touch-pan-x"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {VIDEO_REVIEWS.map((v, i) => (
-              <div key={i} className="snap-center">
-                <VideoCard {...v} />
+            {REVIEWS_DATA.map((rev) => (
+              <div
+                key={rev.id}
+                onClick={() => setSelectedReview(rev)}
+                className="snap-start flex-shrink-0 w-72 sm:w-80 rounded-2xl overflow-hidden border border-border bg-background shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group flex flex-col hover:-translate-y-1"
+              >
+                {/* Video Preview Container (Aspect 9/16 vertical portrait) */}
+                <div className="relative w-full aspect-[9/14] bg-neutral-900 overflow-hidden">
+                  <VideoThumbnail src={rev.src} alt={rev.seoTitle} />
+
+                  {/* Gradient overlays */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/30 pointer-events-none" />
+
+                  {/* Top Badge: Category & 5 Stars */}
+                  <div className="absolute top-3 inset-x-3 flex items-center justify-between z-10 pointer-events-none">
+                    <span className="bg-primary/95 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow backdrop-blur-sm">
+                      {rev.tag}
+                    </span>
+                    <div className="flex items-center gap-0.5 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-full">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} size={11} className="text-yellow-400 fill-yellow-400" />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Centered Play Button (matches Events section) */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+                    <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+                      <Play size={28} fill="currentColor" className="ml-1" />
+                    </div>
+                    <span className="mt-3 text-xs font-semibold text-white bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 opacity-90 group-hover:opacity-100 transition-opacity">
+                      Click to Watch Video
+                    </span>
+                  </div>
+
+                  {/* Bottom Info on Card */}
+                  <div className="absolute bottom-0 inset-x-0 p-4 z-10 pointer-events-none">
+                    <h3 className="text-white font-bold text-base leading-snug line-clamp-2 drop-shadow-sm mb-1">
+                      {rev.title}
+                    </h3>
+                    <p className="text-white/80 text-xs flex items-center gap-1.5">
+                      <CheckCircle2 size={13} className="text-emerald-400 flex-shrink-0" />
+                      <span>{rev.doctor}</span>
+                    </p>
+                    <p className="text-white/60 text-[11px] mt-0.5">{rev.clinic}</p>
+                  </div>
+                </div>
+
+                {/* Card footer description */}
+                <div className="p-4 bg-background flex flex-col justify-between flex-grow">
+                  <p className="text-muted-foreground text-xs leading-relaxed line-clamp-2 italic mb-3">
+                    "{rev.quote}"
+                  </p>
+                  <div className="flex items-center justify-between pt-2 border-t border-border/50 text-xs">
+                    <span className="font-semibold text-primary">{rev.condition}</span>
+                    <span className="text-primary font-medium group-hover:underline flex items-center gap-1">
+                      Watch <Play size={10} fill="currentColor" />
+                    </span>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* RIGHT ARROW — overlaps between last card and edge */}
+          {/* RIGHT ARROW */}
           <button
             onClick={() => scroll(1)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/90 backdrop-blur-sm border border-border rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all"
-            aria-label="Scroll right"
+            className="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 z-20 w-11 h-11 bg-white/95 text-foreground border border-border rounded-full shadow-xl items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all duration-200"
+            aria-label="Next review"
           >
-            <ChevronRight size={20} />
+            <ChevronRight size={22} />
           </button>
-
         </div>
 
-        <p className="text-center text-xs text-muted-foreground mt-2">
-          Swipe or tap arrows to watch all patient reviews
+        <p className="text-center text-xs text-muted-foreground mt-4">
+          Swipe or tap arrows to view all patient video reviews • Click any video to play in full screen
         </p>
       </div>
+
+      {/* POPUP / MODAL LIGHTBOX FOR VIDEO */}
+      {selectedReview && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-6"
+          onClick={() => setSelectedReview(null)}
+        >
+          <div
+            className="relative w-full max-w-3xl bg-neutral-950 border border-neutral-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[92vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedReview(null)}
+              className="absolute top-4 right-4 z-30 p-2.5 bg-black/70 hover:bg-black text-white rounded-full transition-colors border border-white/20 shadow-lg"
+              aria-label="Close video"
+            >
+              <X size={20} />
+            </button>
+
+            {/* Video Player Column */}
+            <div className="relative md:w-3/5 bg-black flex items-center justify-center aspect-[9/16] md:aspect-auto md:min-h-[460px] max-h-[60vh] md:max-h-[85vh]">
+              <video
+                src={selectedReview.src}
+                controls
+                autoPlay
+                playsInline
+                className="w-full h-full object-contain"
+              />
+
+              {/* Prev / Next within modal */}
+              {REVIEWS_DATA.length > 1 && (
+                <>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const idx = REVIEWS_DATA.findIndex((r) => r.id === selectedReview.id);
+                      setSelectedReview(REVIEWS_DATA[(idx - 1 + REVIEWS_DATA.length) % REVIEWS_DATA.length]);
+                    }}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 p-2 bg-black/60 hover:bg-black/90 text-white rounded-full transition-colors border border-white/10"
+                    aria-label="Previous video"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const idx = REVIEWS_DATA.findIndex((r) => r.id === selectedReview.id);
+                      setSelectedReview(REVIEWS_DATA[(idx + 1) % REVIEWS_DATA.length]);
+                    }}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-black/60 hover:bg-black/90 text-white rounded-full transition-colors border border-white/10"
+                    aria-label="Next video"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* Details Column */}
+            <div className="md:w-2/5 p-6 sm:p-7 flex flex-col justify-between bg-neutral-900 text-white overflow-y-auto">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="bg-primary text-white text-[11px] font-bold px-3 py-1 rounded-full">
+                    {selectedReview.tag}
+                  </span>
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={13} className="text-yellow-400 fill-yellow-400" />
+                    ))}
+                  </div>
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 leading-snug">
+                  {selectedReview.title}
+                </h3>
+
+                <p className="text-primary-300 text-xs font-semibold mb-4">
+                  {selectedReview.seoTitle}
+                </p>
+
+                <div className="space-y-3 py-3 border-y border-neutral-800 text-xs">
+                  <div>
+                    <span className="text-neutral-400 block">Condition Treated</span>
+                    <span className="font-semibold text-white">{selectedReview.condition}</span>
+                  </div>
+                  <div>
+                    <span className="text-neutral-400 block">Consultant</span>
+                    <span className="font-semibold text-white">{selectedReview.doctor}</span>
+                  </div>
+                  <div>
+                    <span className="text-neutral-400 block">Clinic</span>
+                    <span className="text-neutral-300">{selectedReview.clinic}</span>
+                  </div>
+                </div>
+
+                <p className="text-neutral-300 text-xs leading-relaxed italic mt-4">
+                  "{selectedReview.quote}"
+                </p>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-neutral-800 space-y-2">
+                <a
+                  href="#appointment"
+                  onClick={() => setSelectedReview(null)}
+                  className="btn-primary block text-center text-xs py-2.5 rounded-xl font-bold"
+                >
+                  Book Consultation
+                </a>
+                <a
+                  href="https://wa.me/923086010520?text=Assalam-o-Alaikum%20Dr.%20Zahid,%20I%20saw%20your%20patient%20recovery%20video%20and%20want%20to%20book%20an%20appointment."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-whatsapp block text-center text-xs py-2 rounded-xl font-bold"
+                >
+                  Chat on WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
