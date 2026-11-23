@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { CheckCircle, Star, Zap, ChevronLeft, ChevronRight } from 'lucide-react';
+import { CheckCircle, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const INDIVIDUAL_SERVICES = [
   { name: 'Physiotherapy', price: 3000, emoji: '🦴' },
@@ -82,43 +82,51 @@ const PACKAGES = [
 
 const fmt = (n) => new Intl.NumberFormat('en-PK').format(n);
 
-const ScrollSection = ({ title, subtitle, children, scrollRef, onScroll }) => (
+// Reusable scroll strip with overlapping arrows
+const ScrollStrip = ({ label, heading, children, scrollRef, onScroll }) => (
   <div className="mb-16">
-    <div className="flex items-end justify-between mb-6">
-      <div>
-        <p className="text-primary font-semibold text-xs uppercase tracking-wider mb-1">{subtitle}</p>
-        <h3 className="text-2xl sm:text-3xl font-bold text-foreground-bold">{title}</h3>
-      </div>
-      <div className="hidden sm:flex gap-2">
-        <button
-          onClick={() => onScroll(-1)}
-          className="w-9 h-9 rounded-full border border-border bg-background flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all"
-        >
-          <ChevronLeft size={18} />
-        </button>
-        <button
-          onClick={() => onScroll(1)}
-          className="w-9 h-9 rounded-full border border-border bg-background flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all"
-        >
-          <ChevronRight size={18} />
-        </button>
-      </div>
+    <div className="mb-6 text-center sm:text-left">
+      <p className="text-primary font-semibold text-xs uppercase tracking-wider mb-1">{label}</p>
+      <h3 className="text-2xl sm:text-3xl font-bold text-foreground-bold">{heading}</h3>
     </div>
-    <div
-      ref={scrollRef}
-      className="flex gap-4 overflow-x-auto pb-3 scroll-smooth snap-x snap-mandatory"
-      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-    >
-      {children}
+
+    {/* Relative wrapper so arrows are inside the visible area */}
+    <div className="relative">
+      {/* LEFT arrow — overlaps between screen edge and first card */}
+      <button
+        onClick={() => onScroll(-1)}
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/90 backdrop-blur-sm border border-border rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all"
+        aria-label="Scroll left"
+      >
+        <ChevronLeft size={20} />
+      </button>
+
+      {/* Scrollable cards */}
+      <div
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto pb-3 px-10 scroll-smooth snap-x snap-mandatory touch-pan-x"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        {children}
+      </div>
+
+      {/* RIGHT arrow — overlaps between last card and screen edge */}
+      <button
+        onClick={() => onScroll(1)}
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/90 backdrop-blur-sm border border-border rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all"
+        aria-label="Scroll right"
+      >
+        <ChevronRight size={20} />
+      </button>
     </div>
   </div>
 );
 
 const Pricing = () => {
   const servRef = useRef(null);
-  const pkgRef = useRef(null);
+  const pkgRef  = useRef(null);
 
-  const scrollServ = (dir) => servRef.current?.scrollBy({ left: dir * 260, behavior: 'smooth' });
+  const scrollServ = (dir) => servRef.current?.scrollBy({ left: dir * 220, behavior: 'smooth' });
   const scrollPkg  = (dir) => pkgRef.current?.scrollBy({ left: dir * 300, behavior: 'smooth' });
 
   return (
@@ -127,46 +135,49 @@ const Pricing = () => {
 
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14 fade-up delay-100">
-          <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-2">Transparent Pricing</p>
+          <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-2">
+            Transparent Pricing
+          </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground-bold mb-4">
-            Services &amp; Package Fees
+            Physiotherapy Services &amp; Package Fees in Lahore
           </h2>
           <p className="text-muted-foreground text-lg">
-            سادہ اور واضح قیمتیں — کوئی چھپی ہوئی فیس نہیں۔ تمام فیسیں PKR میں ہیں۔
+            Clear, upfront fees for all physiotherapy services at PhysioGrow Clinic, Lahore.
+            No hidden charges — all prices in PKR.
           </p>
         </div>
 
-        {/* ── SERVICES (shown first for local audience) ── */}
+        {/* ── SERVICES FIRST (best for Pakistani local audience) ── */}
         <div className="fade-up delay-200">
-          <ScrollSection
-            title="Individual Services"
-            subtitle="Single Session Fees"
+          <ScrollStrip
+            label="Single Session Fees"
+            heading="Individual Physiotherapy Services"
             scrollRef={servRef}
             onScroll={scrollServ}
           >
             {INDIVIDUAL_SERVICES.map((s, i) => (
               <div
                 key={i}
-                className="snap-start flex-shrink-0 w-48 sm:w-52 bg-background border border-border rounded-2xl p-5 flex flex-col gap-3 hover:border-primary hover:shadow-md transition-all group"
+                className="snap-start flex-shrink-0 w-48 bg-background border border-border rounded-2xl p-5 flex flex-col gap-3 hover:border-primary hover:shadow-md transition-all group"
               >
                 <div className="text-3xl">{s.emoji}</div>
-                <p className="font-semibold text-foreground text-sm leading-snug group-hover:text-primary transition-colors">
+                <p className="font-semibold text-foreground text-sm leading-snug group-hover:text-primary transition-colors min-h-[40px]">
                   {s.name}
                 </p>
                 <div className="mt-auto">
-                  <span className="text-primary font-bold text-lg">Rs. {fmt(s.price)}</span>
+                  <span className="text-primary font-bold text-lg">Rs.&nbsp;{fmt(s.price)}</span>
                   <p className="text-muted-foreground text-xs mt-0.5">per session</p>
                 </div>
               </div>
             ))}
-          </ScrollSection>
+          </ScrollStrip>
         </div>
 
-        {/* ── PACKAGES (shown second) ── */}
+        {/* ── PACKAGES SECOND ── */}
         <div className="fade-up delay-300">
-          <ScrollSection
-            title="Wellness Packages"
-            subtitle="Complete Treatment Plans"
+          <ScrollStrip
+            label="Complete Treatment Plans"
+            heading="Physiotherapy Packages in Lahore"
             scrollRef={pkgRef}
             onScroll={scrollPkg}
           >
@@ -179,12 +190,9 @@ const Pricing = () => {
                     : 'bg-background border-border'
                 }`}
               >
-                {/* Tag */}
                 {pkg.tag && (
                   <span className={`self-start text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 ${
-                    pkg.highlight
-                      ? 'bg-yellow-400 text-yellow-900'
-                      : 'bg-primary-50 text-primary'
+                    pkg.highlight ? 'bg-yellow-400 text-yellow-900' : 'bg-primary-50 text-primary'
                   }`}>
                     <Star size={10} fill="currentColor" /> {pkg.tag}
                   </span>
@@ -195,7 +203,7 @@ const Pricing = () => {
                     {pkg.name}
                   </h4>
                   <p className={`text-2xl font-extrabold mt-2 ${pkg.highlight ? 'text-white' : 'text-primary'}`}>
-                    Rs. {fmt(pkg.price)}
+                    Rs.&nbsp;{fmt(pkg.price)}
                   </p>
                 </div>
 
@@ -223,11 +231,11 @@ const Pricing = () => {
                 </a>
               </div>
             ))}
-          </ScrollSection>
+          </ScrollStrip>
         </div>
 
-        <p className="text-center text-muted-foreground text-xs -mt-4">
-          * Prices may vary based on condition. Contact us for a personalized quote.
+        <p className="text-center text-muted-foreground text-xs -mt-8">
+          * Prices may vary based on condition severity. Contact us for a personalized consultation.
         </p>
       </div>
     </section>
