@@ -30,6 +30,8 @@ export const NAV_LINKS = [
   { name: 'Team', href: '#team' },
   { name: 'Events', href: '#events' },
   { name: 'Blog', href: '#blog' },
+  { name: 'Pricing', href: '#pricing' },
+  { name: 'Reviews', href: '#reviews' },
   { name: 'FAQ', href: '#faq' },
   { name: 'Contact', href: '#contact' },
 ];

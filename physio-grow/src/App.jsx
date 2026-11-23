@@ -12,6 +12,8 @@ const Team = lazy(() => import('./components/Team'));
 const WhyChooseUs = lazy(() => import('./components/WhyChooseUs'));
 const Events = lazy(() => import('./components/Events'));
 const Blog = lazy(() => import('./components/Blog'));
+const Pricing = lazy(() => import('./components/Pricing'));
+const PatientReviews = lazy(() => import('./components/PatientReviews'));
 const AppointmentForm = lazy(() => import('./components/AppointmentForm'));
 const FAQ = lazy(() => import('./components/FAQ'));
 const Contact = lazy(() => import('./components/Contact'));
@@ -68,6 +70,12 @@ function App() {
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <Blog />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <Pricing />
+        </Suspense>
+        <Suspense fallback={<SectionFallback />}>
+          <PatientReviews />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <AppointmentForm />
