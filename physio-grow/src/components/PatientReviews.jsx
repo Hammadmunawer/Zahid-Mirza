@@ -1,115 +1,151 @@
-import { Star, Quote } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 
-// ✏️ EDIT THESE 3 REVIEWS — Replace name, role, rating, text and avatar initials
-const REVIEWS = [
+const VIDEO_REVIEWS = [
   {
-    name: 'Ahmed Raza',
-    role: 'Patient – Back Pain Recovery',
-    rating: 5,
-    text: 'Dr. Zahid Mirza treated my chronic lower back pain that had been bothering me for over two years. After just 8 sessions at PhysioGrow Clinic, I was completely pain-free. His approach is professional, evidence-based, and genuinely patient-focused. Highly recommended!',
-    initials: 'AR',
-    color: 'bg-teal-500',
+    src: '/assets/patientReviews/review1.mp4',
+    patientName: 'Patient Review 1',
+    label: 'Real Patient Experience',
   },
   {
-    name: 'Fatima Malik',
-    role: 'Patient – Sports Injury Rehab',
-    rating: 5,
-    text: 'I had an ACL injury from football and was worried I would never play again. The team at PhysioGrow put together a detailed rehab plan and guided me every step of the way. I am back on the field stronger than before. Exceptional care and facilities!',
-    initials: 'FM',
-    color: 'bg-cyan-500',
+    src: '/assets/patientReviews/review2.mp4',
+    patientName: 'Patient Review 2',
+    label: 'Real Patient Experience',
   },
   {
-    name: 'Tariq Hussain',
-    role: 'Patient – Neck Pain & Cervical Spondylosis',
-    rating: 5,
-    text: 'Dr. Rumman Mehar treated my severe cervical spondylosis with amazing results. The spine adjustment techniques she used gave me relief in just a few sessions. The whole clinic staff is welcoming and caring. Best physiotherapy clinic in Lahore, without doubt.',
-    initials: 'TH',
-    color: 'bg-indigo-500',
+    src: '/assets/patientReviews/review3.mp4',
+    patientName: 'Patient Review 3',
+    label: 'Real Patient Experience',
   },
 ];
 
-const StarRating = ({ rating }) => (
-  <div className="flex items-center gap-0.5">
-    {[1, 2, 3, 4, 5].map((star) => (
-      <Star
-        key={star}
-        size={16}
-        className={star <= rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}
-      />
-    ))}
-  </div>
-);
+const VideoCard = ({ src, patientName, label }) => {
+  const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(false);
 
-const Reviews = () => {
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (playing) {
+      videoRef.current.pause();
+      setPlaying(false);
+    } else {
+      videoRef.current.play();
+      setPlaying(true);
+    }
+  };
+
+  const toggleMute = (e) => {
+    e.stopPropagation();
+    if (!videoRef.current) return;
+    videoRef.current.muted = !muted;
+    setMuted(!muted);
+  };
+
   return (
-    <section id="reviews" className="section-padding bg-background-alt">
+    <div className="relative flex-shrink-0 w-64 sm:w-72 rounded-2xl overflow-hidden border border-border shadow-md bg-black group cursor-pointer"
+         onClick={togglePlay}>
+      <video
+        ref={videoRef}
+        src={src}
+        className="w-full aspect-[9/16] object-cover"
+        playsInline
+        preload="metadata"
+        onEnded={() => setPlaying(false)}
+      />
+
+      {/* Overlay gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/10 pointer-events-none" />
+
+      {/* Play / Pause button */}
+      <div className={`absolute inset-0 flex items-center justify-center transition-opacity ${playing ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
+        <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white/60">
+          {playing
+            ? <Pause size={22} className="text-white" />
+            : <Play size={22} className="text-white ml-1" />}
+        </div>
+      </div>
+
+      {/* Mute toggle */}
+      <button
+        onClick={toggleMute}
+        className="absolute top-3 right-3 w-8 h-8 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/60 transition-colors z-10"
+      >
+        {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+      </button>
+
+      {/* Bottom label */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 pointer-events-none">
+        <p className="text-white font-semibold text-sm">{patientName}</p>
+        <p className="text-white/70 text-xs">{label}</p>
+      </div>
+    </div>
+  );
+};
+
+const PatientReviews = () => {
+  const scrollRef = useRef(null);
+
+  const scroll = (dir) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: dir * 300, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section id="reviews" className="section-padding bg-background-alt overflow-hidden">
       <div className="container-max">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14 fade-up delay-100">
+        <div className="text-center max-w-2xl mx-auto mb-10 fade-up delay-100">
           <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-2">
             Patient Reviews
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground-bold mb-4">
-            What Our Patients Say
+            Real Patients, Real Results
           </h2>
           <p className="text-muted-foreground text-lg">
-            Real experiences from real patients who recovered at PhysioGrow Clinic &amp; Academy.
+            Watch what our patients have to say about their recovery journey at PhysioGrow Clinic &amp; Academy.
           </p>
         </div>
 
-        {/* Reviews Grid */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {REVIEWS.map((review, i) => (
-            <div
-              key={i}
-              className={`relative bg-background rounded-2xl border border-border p-6 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow fade-up delay-${(i + 1) * 100}`}
-            >
-              {/* Quote Icon */}
-              <div className="absolute top-5 right-5 text-primary/10">
-                <Quote size={48} />
-              </div>
-
-              {/* Stars */}
-              <StarRating rating={review.rating} />
-
-              {/* Review Text */}
-              <p className="text-muted-foreground text-sm leading-relaxed flex-grow relative z-10">
-                "{review.text}"
-              </p>
-
-              {/* Reviewer */}
-              <div className="flex items-center gap-3 pt-2 border-t border-border/50">
-                <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0 ${review.color}`}
-                >
-                  {review.initials}
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground text-sm">{review.name}</p>
-                  <p className="text-muted-foreground text-xs">{review.role}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="text-center mt-12 fade-up delay-400">
-          <p className="text-muted-foreground text-sm mb-4">
-            Experienced great results at PhysioGrow? We'd love to hear from you.
-          </p>
-          <a
-            href="https://wa.me/923086010520"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary inline-flex items-center gap-2"
+        {/* Scroll Arrows + Strip */}
+        <div className="relative fade-up delay-200">
+          {/* Left Arrow */}
+          <button
+            onClick={() => scroll(-1)}
+            className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 bg-background border border-border rounded-full shadow items-center justify-center hover:bg-primary hover:text-white transition-colors"
           >
-            Share Your Experience
-          </a>
+            ‹
+          </button>
+
+          {/* Scrollable Strip */}
+          <div
+            ref={scrollRef}
+            className="flex gap-5 overflow-x-auto pb-4 px-2 scroll-smooth snap-x snap-mandatory"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {VIDEO_REVIEWS.map((v, i) => (
+              <div key={i} className="snap-center">
+                <VideoCard {...v} />
+              </div>
+            ))}
+          </div>
+
+          {/* Right Arrow */}
+          <button
+            onClick={() => scroll(1)}
+            className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 bg-background border border-border rounded-full shadow items-center justify-center hover:bg-primary hover:text-white transition-colors"
+          >
+            ›
+          </button>
         </div>
+
+        <p className="text-center text-xs text-muted-foreground mt-4">
+          Swipe or use arrows to watch all reviews
+        </p>
       </div>
     </section>
   );
 };
 
-export default Reviews;
+export default PatientReviews;
