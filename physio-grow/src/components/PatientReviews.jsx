@@ -1,59 +1,20 @@
 import { useRef, useState, useEffect } from 'react';
 import { Play, X, Star, ChevronLeft, ChevronRight, CheckCircle2, ShieldCheck } from 'lucide-react';
-
-// SEO-targeted patient reviews targeting Lahore physiotherapy keywords
-const REVIEWS_DATA = [
-  {
-    id: 1,
-    src: '/assets/patientReviews/review1.mp4',
-    tag: 'Back Pain & Sciatica Relief',
-    title: 'Severe Back Pain Recovery',
-    seoTitle: 'Best Physiotherapist in Lahore – Patient Back Pain Recovery',
-    patient: 'Verified Patient',
-    doctor: 'Dr. Haseeb',
-    clinic: 'PhysioGrow Clinic & Academy, Lahore',
-    condition: 'Chronic Lumbar Pain & Sciatica',
-    rating: 5,
-    quote: 'Remarkable recovery from severe back pain through targeted physiotherapy and rehabilitation at PhysioGrow Clinic Lahore.',
-  },
-  {
-    id: 2,
-    src: '/assets/patientReviews/review2.mp4',
-    tag: 'Sports Injury Rehabilitation',
-    title: 'Sports Injury & Mobility Rehab',
-    seoTitle: 'Sports Injury Treatment in Lahore – Patient Video Review',
-    patient: 'Recovered Athlete',
-    doctor: 'Dr. Zahid Mirza',
-    clinic: 'PhysioGrow Clinic & Academy, Lahore',
-    condition: 'Ligament & Knee Sports Injury',
-    rating: 5,
-    quote: 'Evidence-based sports rehabilitation and exercise therapy helped me get back to full mobility without surgery.',
-  },
-  {
-    id: 3,
-    src: '/assets/patientReviews/review3.mp4',
-    tag: 'Spine Adjustment & Neck Pain',
-    title: 'Spine Adjustment & Neck Relief',
-    seoTitle: 'Spine Adjustment & Neck Pain Physiotherapy in Lahore',
-    patient: 'Verified Patient',
-    doctor: 'Dr. Zahid Mirza',
-    clinic: 'PhysioGrow Clinic & Academy, Lahore',
-    condition: 'Cervical Spondylosis & Spine Pain',
-    rating: 5,
-    quote: 'Specialized spinal adjustment and manual therapy provided quick and lasting relief from severe neck stiffness.',
-  },
-];
+import { PATIENT_REVIEWS_DATA } from '../constants';
 
 // High-performance video frame thumbnail generator
-// Captures frame at 0.5s to Canvas once, then frees video memory completely
-const VideoThumbnail = ({ src, alt }) => {
+// Captures non-black frame to Canvas once, then frees video memory completely
+const VideoThumbnail = ({ src, alt, seekTime = 2.5 }) => {
   const [thumb, setThumb] = useState(null);
   const videoRef = useRef(null);
 
   useEffect(() => {
     let isMounted = true;
+    let attempts = 0;
+    const initialSeek = seekTime || 2.5;
+
     const video = document.createElement('video');
-    video.src = `${src}#t=0.5`;
+    video.src = `${src}#t=${initialSeek}`;
     video.muted = true;
     video.playsInline = true;
     video.preload = 'metadata';
@@ -66,6 +27,24 @@ const VideoThumbnail = ({ src, alt }) => {
         canvas.height = video.videoHeight || 640;
         const ctx = canvas.getContext('2d');
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // Check if captured frame is completely dark (e.g. black intro/fade)
+        const sampleW = Math.min(60, canvas.width);
+        const sampleH = Math.min(60, canvas.height);
+        const imgData = ctx.getImageData(0, 0, sampleW, sampleH).data;
+        let sum = 0;
+        for (let i = 0; i < imgData.length; i += 4) {
+          sum += (imgData[i] + imgData[i + 1] + imgData[i + 2]) / 3;
+        }
+        const avgBrightness = sum / (imgData.length / 4);
+
+        // If the frame is pitch black (< 20 brightness) and video has more time, advance 1.5s
+        if (avgBrightness < 20 && attempts < 3 && video.currentTime + 1.5 < (video.duration || 30)) {
+          attempts++;
+          video.currentTime += 1.5;
+          return; // Wait for next seeked event
+        }
+
         const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
         if (dataUrl && dataUrl.length > 500) {
           setThumb(dataUrl);
@@ -77,7 +56,7 @@ const VideoThumbnail = ({ src, alt }) => {
     };
 
     const handleLoadedMetadata = () => {
-      video.currentTime = 0.5;
+      video.currentTime = initialSeek;
     };
 
     const cleanup = () => {
@@ -94,7 +73,7 @@ const VideoThumbnail = ({ src, alt }) => {
       isMounted = false;
       cleanup();
     };
-  }, [src]);
+  }, [src, seekTime]);
 
   if (thumb) {
     return (
@@ -110,13 +89,13 @@ const VideoThumbnail = ({ src, alt }) => {
   return (
     <video
       ref={videoRef}
-      src={`${src}#t=0.5`}
+      src={`${src}#t=${seekTime || 2.5}`}
       muted
       playsInline
       preload="metadata"
       onLoadedMetadata={(e) => {
         try {
-          e.target.currentTime = 0.5;
+          e.target.currentTime = seekTime || 2.5;
         } catch (_) {}
       }}
       className="w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover:scale-105"
@@ -138,12 +117,12 @@ const PatientReviews = () => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') setSelectedReview(null);
       if (e.key === 'ArrowRight') {
-        const idx = REVIEWS_DATA.findIndex((r) => r.id === selectedReview.id);
-        setSelectedReview(REVIEWS_DATA[(idx + 1) % REVIEWS_DATA.length]);
+        const idx = PATIENT_REVIEWS_DATA.findIndex((r) => r.id === selectedReview.id);
+        setSelectedReview(PATIENT_REVIEWS_DATA[(idx + 1) % PATIENT_REVIEWS_DATA.length]);
       }
       if (e.key === 'ArrowLeft') {
-        const idx = REVIEWS_DATA.findIndex((r) => r.id === selectedReview.id);
-        setSelectedReview(REVIEWS_DATA[(idx - 1 + REVIEWS_DATA.length) % REVIEWS_DATA.length]);
+        const idx = PATIENT_REVIEWS_DATA.findIndex((r) => r.id === selectedReview.id);
+        setSelectedReview(PATIENT_REVIEWS_DATA[(idx - 1 + PATIENT_REVIEWS_DATA.length) % PATIENT_REVIEWS_DATA.length]);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -187,15 +166,15 @@ const PatientReviews = () => {
             className="flex gap-6 overflow-x-auto pb-4 px-4 sm:px-12 scroll-smooth snap-x snap-mandatory touch-pan-x"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {REVIEWS_DATA.map((rev) => (
+            {PATIENT_REVIEWS_DATA.map((rev) => (
               <div
                 key={rev.id}
                 onClick={() => setSelectedReview(rev)}
                 className="snap-start flex-shrink-0 w-72 sm:w-80 rounded-2xl overflow-hidden border border-border bg-background shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group flex flex-col hover:-translate-y-1"
               >
-                {/* Video Preview Container (Aspect 9/16 vertical portrait) */}
+                {/* Video Preview Container (Aspect 9/14 vertical portrait) */}
                 <div className="relative w-full aspect-[9/14] bg-neutral-900 overflow-hidden">
-                  <VideoThumbnail src={rev.src} alt={rev.seoTitle} />
+                  <VideoThumbnail src={rev.src} alt={rev.seoTitle} seekTime={rev.seekTime} />
 
                   {/* Gradient overlays */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/30 pointer-events-none" />
@@ -296,13 +275,13 @@ const PatientReviews = () => {
               />
 
               {/* Prev / Next within modal */}
-              {REVIEWS_DATA.length > 1 && (
+              {PATIENT_REVIEWS_DATA.length > 1 && (
                 <>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      const idx = REVIEWS_DATA.findIndex((r) => r.id === selectedReview.id);
-                      setSelectedReview(REVIEWS_DATA[(idx - 1 + REVIEWS_DATA.length) % REVIEWS_DATA.length]);
+                      const idx = PATIENT_REVIEWS_DATA.findIndex((r) => r.id === selectedReview.id);
+                      setSelectedReview(PATIENT_REVIEWS_DATA[(idx - 1 + PATIENT_REVIEWS_DATA.length) % PATIENT_REVIEWS_DATA.length]);
                     }}
                     className="absolute left-3 top-1/2 -translate-y-1/2 p-2 bg-black/60 hover:bg-black/90 text-white rounded-full transition-colors border border-white/10"
                     aria-label="Previous video"
@@ -312,8 +291,8 @@ const PatientReviews = () => {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      const idx = REVIEWS_DATA.findIndex((r) => r.id === selectedReview.id);
-                      setSelectedReview(REVIEWS_DATA[(idx + 1) % REVIEWS_DATA.length]);
+                      const idx = PATIENT_REVIEWS_DATA.findIndex((r) => r.id === selectedReview.id);
+                      setSelectedReview(PATIENT_REVIEWS_DATA[(idx + 1) % PATIENT_REVIEWS_DATA.length]);
                     }}
                     className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-black/60 hover:bg-black/90 text-white rounded-full transition-colors border border-white/10"
                     aria-label="Next video"
