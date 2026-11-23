@@ -22,13 +22,13 @@ const Hero = () => {
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-foreground-bold leading-tight">
                 {DOCTOR_INFO.name}
               </h1>
-              <p className="text-lg sm:text-2xl text-primary font-semibold leading-snug">
-                {DOCTOR_INFO.role} — {DOCTOR_INFO.clinicName}
+              <p className="text-lg sm:text-2xl text-primary font-bold leading-snug">
+                Best Physiotherapist in Lahore — {DOCTOR_INFO.clinicName}
               </p>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-lg">
                 {DOCTOR_INFO.qualification}. Award-winning specialist recognized as the
                 {' '}<span className="font-semibold text-foreground">"Best Physiotherapist in Pakistan"</span>.
-                Offering top-rated <strong>physiotherapy in Lahore</strong> to help you recover, move better, and live pain-free through evidence-based treatment.
+                At <strong>PhysioGrow Clinic &amp; Academy</strong>, we provide premier, evidence-based <strong>physiotherapy in Lahore</strong> for back pain, sports injuries, sciatica, and spine recovery.
               </p>
             </div>
 

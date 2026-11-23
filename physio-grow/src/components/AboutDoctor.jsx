@@ -31,7 +31,7 @@ const AboutDoctor = () => {
             <div>
               <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-2">About the Doctor</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground-bold">
-                Meet {DOCTOR_INFO.name}
+                Meet {DOCTOR_INFO.name} – Best Physiotherapist in Lahore
               </h2>
             </div>
 
