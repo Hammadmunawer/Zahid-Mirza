@@ -22,6 +22,20 @@ const SectionFallback = () => <div className="h-32 bg-background" />;
 
 function App() {
   useEffect(() => {
+    // Disable automatic scroll restoration so page always opens from top (Home)
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    // Always start at top
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+    // Clear any hash in URL on initial visit/refresh so user starts at Home
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
