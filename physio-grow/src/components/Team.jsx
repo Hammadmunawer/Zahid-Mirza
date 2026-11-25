@@ -14,7 +14,7 @@ const TeamCard = ({ member, onViewProfile }) => {
               src={member.image}
               alt={member.name}
               className="w-full h-full object-cover object-top"
-              loading="lazy"
+              loading={member.id <= 4 ? "eager" : "lazy"}
               width="320"
               height="320"
               onError={(e) => {

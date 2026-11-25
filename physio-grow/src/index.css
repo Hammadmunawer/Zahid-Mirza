@@ -9,6 +9,8 @@
   --color-primary: var(--primary);
   --color-primary-700: var(--primary-700);
   --color-primary-800: var(--primary-800);
+  --color-primary-900: var(--primary-900);
+  --color-primary-950: var(--primary-950);
 
   --color-background: var(--bg-base);
   --color-background-alt: var(--bg-alt);
@@ -28,6 +30,8 @@
     --primary: #2563eb;
     --primary-700: #1d4ed8;
     --primary-800: #1e40af;
+    --primary-900: #1e3a8a;
+    --primary-950: #172554;
 
     --bg-base: #ffffff;
     --bg-alt: #f8fafc;
@@ -46,6 +50,8 @@
     --primary: #0d9488;
     --primary-700: #0f766e;
     --primary-800: #115e59;
+    --primary-900: #134e4a;
+    --primary-950: #042f2e;
 
     --bg-base: #ffffff;
     --bg-alt: #f0fdf4;
@@ -64,6 +70,8 @@
     --primary: #14b8a6;
     --primary-700: #0d9488;
     --primary-800: #0f766e;
+    --primary-900: #115e59;
+    --primary-950: #134e4a;
 
     --bg-base: #0f172a;
     --bg-alt: #1e293b;
