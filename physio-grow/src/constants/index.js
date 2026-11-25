@@ -58,7 +58,7 @@ export const TEAM_DATA = [
     specialty: 'Expert in Spine Adjustment',
     experience: '6+ Years',
     bio: 'Dr. Rumman Mehar is a skilled female physiotherapist and the co-founder of PhysioGrow Clinic & Academy with over 6 years of clinical experience. With a Doctor of Physical Therapy (DPT) degree and a Master\'s in Sports & Medicine Physiotherapy, she specializes in spine adjustment and postural correction. Her expertise in spinal rehabilitation and manual therapy helps patients achieve lasting relief from back pain, neck pain, and spinal disorders.',
-    image: '/assets/team/dr-rumman-mehar.jpg?v=3',
+    image: '/assets/team/dr-rumman-mehar.jpg?v=4',
     social: {
       linkedin: '#',
     }
@@ -71,7 +71,7 @@ export const TEAM_DATA = [
     specialty: 'Physiotherapy & Rehabilitation',
     experience: '2+ Years',
     bio: 'Dr. Haseeb is a dedicated physiotherapist at PhysioGrow Clinic & Academy. With his DPT qualification and commitment to patient care, he provides comprehensive physiotherapy treatments including manual therapy, exercise therapy, and rehabilitation programs. He works closely with patients to help them recover from injuries, manage pain, and restore mobility.',
-    image: '/assets/team/dr-haseeb.jpg',
+    image: '/assets/team/dr-haseeb.jpg?v=4',
     social: {
       linkedin: '#',
     }
@@ -84,7 +84,7 @@ export const TEAM_DATA = [
     specialty: 'Musculoskeletal & Sports Rehabilitation',
     experience: '2+ Years',
     bio: 'Dr Wajeeha Saeed is a dedicated physiotherapist at PhysioGrow Clinic and Academy, committed to providing patient-centered care and evidence-based rehabilitation. She specializes in musculoskeletal rehabilitation, sports injuries, pain management, manual therapy, and therapeutic exercise. Her goal is to help patients recover from injuries, restore mobility, improve physical function, and enhance their overall quality of life through personalized physiotherapy treatment plans.',
-    image: '/assets/team/dr-wajeeha.jpg',
+    image: '/assets/team/dr-wajeeha.jpg?v=4',
     social: {
       linkedin: '#',
     }
@@ -110,7 +110,7 @@ export const TEAM_DATA = [
   specialty: 'Prosthetics & Orthotics',
   experience: '2+ Years',
   bio: 'Mauz Mukhtar is a qualified Orthotist and Prosthetist at PhysioGrow Clinic & Academy, trained at the prestigious King Edward Medical University (KEMU), Lahore, with clinical training at Mayo Hospital and PSRD Ichra. He specializes in comprehensive prosthetic and orthotic care, including custom prostheses and orthoses, advanced artificial limb solutions, post-amputation rehabilitation, gait training and mobility restoration, orthotic management of limb deformities, spinal and limb orthoses, foot and ankle biomechanical support, postural correction, and functional rehabilitation to help patients regain independence and improve their quality of life.',
-  image: '/assets/team/mauz-mukhtar.jpg',
+  image: '/assets/team/mauz-mukhtar.jpg?v=4',
   social: {
     linkedin: '#',
   }

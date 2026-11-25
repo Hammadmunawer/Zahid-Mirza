@@ -13,7 +13,7 @@ const TeamCard = ({ member, onViewProfile }) => {
             <img
               src={member.image}
               alt={member.name}
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-top"
               loading="lazy"
               width="320"
               height="320"
