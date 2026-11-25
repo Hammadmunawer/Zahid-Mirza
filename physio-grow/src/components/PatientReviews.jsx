@@ -6,6 +6,7 @@ import { PATIENT_REVIEWS_DATA } from '../constants';
 // Captures non-black frame to Canvas once, then frees video memory completely
 const VideoThumbnail = ({ src, alt, seekTime = 2.5 }) => {
   const [thumb, setThumb] = useState(null);
+  const [loading, setLoading] = useState(true);
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -18,6 +19,7 @@ const VideoThumbnail = ({ src, alt, seekTime = 2.5 }) => {
     video.muted = true;
     video.playsInline = true;
     video.preload = 'metadata';
+    video.crossOrigin = 'anonymous';
 
     const captureFrame = () => {
       try {
@@ -39,7 +41,7 @@ const VideoThumbnail = ({ src, alt, seekTime = 2.5 }) => {
         const avgBrightness = sum / (imgData.length / 4);
 
         // If the frame is pitch black (< 20 brightness) and video has more time, advance 1.5s
-        if (avgBrightness < 20 && attempts < 3 && video.currentTime + 1.5 < (video.duration || 30)) {
+        if (avgBrightness < 20 && attempts < 5 && video.currentTime + 1.5 < (video.duration || 30)) {
           attempts++;
           video.currentTime += 1.5;
           return; // Wait for next seeked event
@@ -47,11 +49,12 @@ const VideoThumbnail = ({ src, alt, seekTime = 2.5 }) => {
 
         const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
         if (dataUrl && dataUrl.length > 500) {
-          setThumb(dataUrl);
+          if (isMounted) setThumb(dataUrl);
         }
       } catch (e) {
-        // Fallback: keep native video element showing decoded frame
+        // canvas tainted or error — fallback to video element
       }
+      if (isMounted) setLoading(false);
       cleanup();
     };
 
@@ -59,15 +62,22 @@ const VideoThumbnail = ({ src, alt, seekTime = 2.5 }) => {
       video.currentTime = initialSeek;
     };
 
+    const handleError = () => {
+      if (isMounted) setLoading(false);
+      cleanup();
+    };
+
     const cleanup = () => {
       video.removeEventListener('loadedmetadata', handleLoadedMetadata);
       video.removeEventListener('seeked', captureFrame);
+      video.removeEventListener('error', handleError);
       video.src = '';
       video.load();
     };
 
     video.addEventListener('loadedmetadata', handleLoadedMetadata);
     video.addEventListener('seeked', captureFrame);
+    video.addEventListener('error', handleError);
 
     return () => {
       isMounted = false;
@@ -81,11 +91,22 @@ const VideoThumbnail = ({ src, alt, seekTime = 2.5 }) => {
         src={thumb}
         alt={alt}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        loading="lazy"
+        loading="eager"
       />
     );
   }
 
+  // While loading: show a branded gradient placeholder instead of black
+  if (loading) {
+    return (
+      <div className="w-full h-full bg-gradient-to-b from-primary-800 via-primary-900 to-primary-950 flex flex-col items-center justify-center gap-3">
+        <div className="w-12 h-12 rounded-full border-4 border-primary-400 border-t-white animate-spin" />
+        <span className="text-white/60 text-xs font-medium">Loading preview…</span>
+      </div>
+    );
+  }
+
+  // Fallback: native video element (when canvas capture fails)
   return (
     <video
       ref={videoRef}
@@ -94,9 +115,7 @@ const VideoThumbnail = ({ src, alt, seekTime = 2.5 }) => {
       playsInline
       preload="metadata"
       onLoadedMetadata={(e) => {
-        try {
-          e.target.currentTime = seekTime || 2.5;
-        } catch (_) {}
+        try { e.target.currentTime = seekTime || 2.5; } catch (_) {}
       }}
       className="w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover:scale-105"
     />
@@ -173,7 +192,7 @@ const PatientReviews = () => {
                 className="snap-start flex-shrink-0 w-72 sm:w-80 rounded-2xl overflow-hidden border border-border bg-background shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group flex flex-col hover:-translate-y-1"
               >
                 {/* Video Preview Container (Aspect 9/14 vertical portrait) */}
-                <div className="relative w-full aspect-[9/14] bg-neutral-900 overflow-hidden">
+                <div className="relative w-full aspect-[9/14] bg-gradient-to-b from-primary-800 to-primary-950 overflow-hidden">
                   <VideoThumbnail src={rev.src} alt={rev.seoTitle} seekTime={rev.seekTime} />
 
                   {/* Gradient overlays */}
