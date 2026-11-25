@@ -108,7 +108,7 @@ const Navbar = () => {
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2 group">
           <img 
-            src="/assets/logo.jpg" 
+            src="/assets/logo.webp" 
             alt="PhysioGrow Clinic & Academy" 
             className="w-10 h-10 rounded-lg object-cover"
             width="40"

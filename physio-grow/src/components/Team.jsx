@@ -99,6 +99,7 @@ const ProfileModal = ({ member, onClose }) => {
             src={member.image}
             alt={member.name}
             className="w-full h-full object-cover object-top"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/40 to-transparent" />
         </div>
@@ -288,7 +289,7 @@ const Team = () => {
         <div className="mt-12 relative rounded-3xl overflow-hidden shadow-2xl border border-border group">
           <div className="relative w-full bg-primary-950">
             <img
-              src="/assets/team/physiogrow-team-group.jpg?v=2"
+              src="/assets/team/physiogrow-team-group.webp?v=2"
               alt="PhysioGrow Clinic & Academy Clinical Team"
               className="w-full h-auto block group-hover:scale-105 transition-transform duration-700"
               loading="lazy"

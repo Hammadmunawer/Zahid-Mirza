@@ -45,7 +45,7 @@ export const TEAM_DATA = [
     specialty: 'Musculoskeletal & Sports Rehabilitation',
     experience: '6+ Years',
     bio: 'Dr. Zahid Mirza is a trusted physiotherapist in Lahore, providing evidence-based physiotherapy and rehabilitation services at PhysioGrow Clinic. We specialize in the treatment of back pain, neck pain, knee pain, sports injuries, frozen shoulder, sciatica, arthritis, post-surgical rehabilitation, stroke rehabilitation, and posture correction. Our patient-focused approach combines detailed assessment, personalized treatment plans, manual therapy, exercise therapy, and modern rehabilitation techniques to help you recover faster and move pain-free. Whether you\'re recovering from an injury or managing chronic pain, PhysioGrow Clinic is committed to restoring your mobility, strength, and quality of life in a professional and caring environment.',
-    image: '/assets/team/dr-zahid.jpg?v=3',
+    image: '/assets/team/dr-zahid.webp?v=3',
     social: {
       linkedin: '#',
     }
@@ -58,7 +58,7 @@ export const TEAM_DATA = [
     specialty: 'Expert in Spine Adjustment',
     experience: '6+ Years',
     bio: 'Dr. Rumman Mehar is a skilled female physiotherapist and the co-founder of PhysioGrow Clinic & Academy with over 6 years of clinical experience. With a Doctor of Physical Therapy (DPT) degree and a Master\'s in Sports & Medicine Physiotherapy, she specializes in spine adjustment and postural correction. Her expertise in spinal rehabilitation and manual therapy helps patients achieve lasting relief from back pain, neck pain, and spinal disorders.',
-    image: '/assets/team/dr-rumman-mehar.jpg?v=4',
+    image: '/assets/team/dr-rumman-mehar.webp?v=4',
     social: {
       linkedin: '#',
     }
@@ -71,7 +71,7 @@ export const TEAM_DATA = [
     specialty: 'Physiotherapy & Rehabilitation',
     experience: '2+ Years',
     bio: 'Dr. Haseeb is a dedicated physiotherapist at PhysioGrow Clinic & Academy. With his DPT qualification and commitment to patient care, he provides comprehensive physiotherapy treatments including manual therapy, exercise therapy, and rehabilitation programs. He works closely with patients to help them recover from injuries, manage pain, and restore mobility.',
-    image: '/assets/team/dr-haseeb.jpg?v=4',
+    image: '/assets/team/dr-haseeb.webp?v=4',
     social: {
       linkedin: '#',
     }
@@ -84,7 +84,7 @@ export const TEAM_DATA = [
     specialty: 'Musculoskeletal & Sports Rehabilitation',
     experience: '2+ Years',
     bio: 'Dr Wajeeha Saeed is a dedicated physiotherapist at PhysioGrow Clinic and Academy, committed to providing patient-centered care and evidence-based rehabilitation. She specializes in musculoskeletal rehabilitation, sports injuries, pain management, manual therapy, and therapeutic exercise. Her goal is to help patients recover from injuries, restore mobility, improve physical function, and enhance their overall quality of life through personalized physiotherapy treatment plans.',
-    image: '/assets/team/dr-wajeeha.jpg?v=4',
+    image: '/assets/team/dr-wajeeha.webp?v=4',
     social: {
       linkedin: '#',
     }
@@ -97,7 +97,7 @@ export const TEAM_DATA = [
   specialty: 'Speech & Language Therapy',
   experience: '25+ Years',
   bio: "Huma Tahir is a Consultant Speech-Language Pathologist at PhysioGrow Clinic and Academy, dedicated to helping children overcome speech, language, and communication challenges. She provides support for speech and language delays, stuttering and fluency disorders, articulation and phonological disorders, voice and resonance issues, and communication difficulties associated with ASD, Down syndrome, and hearing loss. Through individualized, child-centered therapy, she helps children develop communication skills, build confidence, and connect more effectively with the world.",
-  image: '/assets/team/huma-tahir.jpg?v=2',
+  image: '/assets/team/huma-tahir.webp?v=2',
   social: {
     linkedin: '#',
   }
@@ -110,7 +110,7 @@ export const TEAM_DATA = [
   specialty: 'Prosthetics & Orthotics',
   experience: '2+ Years',
   bio: 'Mauz Mukhtar is a qualified Orthotist and Prosthetist at PhysioGrow Clinic & Academy, trained at the prestigious King Edward Medical University (KEMU), Lahore, with clinical training at Mayo Hospital and PSRD Ichra. He specializes in comprehensive prosthetic and orthotic care, including custom prostheses and orthoses, advanced artificial limb solutions, post-amputation rehabilitation, gait training and mobility restoration, orthotic management of limb deformities, spinal and limb orthoses, foot and ankle biomechanical support, postural correction, and functional rehabilitation to help patients regain independence and improve their quality of life.',
-  image: '/assets/team/mauz-mukhtar.jpg?v=4',
+  image: '/assets/team/mauz-mukhtar.webp?v=4',
   social: {
     linkedin: '#',
   }
@@ -126,7 +126,7 @@ export const EVENTS_DATA = [
     location: 'PhysioGrow Clinic & Academy, Lahore',
     category: 'Events',
     description: 'Dr. Zahid Ghaffar Mirza and the complete clinical rehabilitation team at PhysioGrow Clinic & Academy, Lahore. A dedicated multidisciplinary team working together for patient recovery and pain-free living.',
-    image: '/assets/team/physiogrow-team-group.jpg'
+    image: '/assets/team/physiogrow-team-group.webp'
   },
   {
     id: 1,
@@ -135,7 +135,7 @@ export const EVENTS_DATA = [
     location: 'Lahore, Pakistan',
     category: 'Awards',
     description: 'Dr. Zahid Ghaffar Mirza was honored with the "Best Physiotherapist in Pakistan" award, presented by Rana Muhammad Iqbal Khan, Law Minister of Punjab, Lahore. This prestigious recognition highlights Dr. Zahid\'s outstanding contributions to the field of physiotherapy and patient care excellence.',
-    image: '/assets/events/award-ceremony.jpg'
+    image: '/assets/events/award-ceremony.webp'
   },
   {
     id: 2,
@@ -144,7 +144,7 @@ export const EVENTS_DATA = [
     location: 'Allama Iqbal Town, Lahore',
     category: 'Events',
     description: 'The grand inauguration of PhysioGrow Clinic & Academy was graced by distinguished guests including Rana Muhammad Iqbal Khan. The ribbon-cutting ceremony marked the beginning of a new chapter in providing world-class physiotherapy services and professional training in Lahore.',
-    image: '/assets/events/opening-ceremony.jpg',
+    image: '/assets/events/opening-ceremony.webp',
     video: '/assets/events/opeing-ceremony.mp4'
   },
   {
@@ -154,7 +154,7 @@ export const EVENTS_DATA = [
     location: 'Afro-Asian Institute, Pakistan',
     category: 'Workshops',
     description: 'Dr. Zahid Ghaffar Mirza conducted a comprehensive Dry Needling Workshop at the Afro-Asian Institute, providing hands-on training to physiotherapy students and professionals on advanced trigger point dry needling techniques for pain management and musculoskeletal rehabilitation.',
-    image: '/assets/events/dry-needling-workshop.jpg'
+    image: '/assets/events/dry-needling-workshop.webp'
   },
   {
     id: 4,
@@ -163,7 +163,7 @@ export const EVENTS_DATA = [
     location: 'Lahore, Pakistan',
     category: 'Workshops',
     description: 'PhysioGrow Academy conducted a professional physiotherapy training workshop for aspiring physiotherapists. The session concluded with a certificate distribution ceremony, recognizing the participants for their dedication to learning advanced physiotherapy techniques and clinical skills.',
-    image: '/assets/events/workshop-certificates.jpg'
+    image: '/assets/events/workshop-certificates.webp'
   },
   {
     id: 5,
@@ -172,7 +172,7 @@ export const EVENTS_DATA = [
     location: 'Lahore, Pakistan',
     category: 'Events',
     description: 'Dr. Zahid Mirza hosted a grand certification ceremony and celebration for the PhysioGrow Academy graduates. Over 25 physiotherapy professionals received their course completion certificates at a rooftop venue in Lahore, marking the successful completion of their advanced physiotherapy training program.',
-    image: '/assets/events/certification-ceremony.jpg'
+    image: '/assets/events/certification-ceremony.webp'
   },
   {
     id: 6,
@@ -181,7 +181,7 @@ export const EVENTS_DATA = [
     location: 'Lahore, Pakistan',
     category: 'Events',
     description: 'A proud moment for PhysioGrow Clinic & Academy as another batch of physiotherapy trainees graduated with flying colors. The graduates proudly displayed their certification folders, representing months of rigorous training in advanced physiotherapy and rehabilitation techniques under Dr. Zahid Mirza\'s mentorship.',
-    image: '/assets/events/batch-graduation.jpg'
+    image: '/assets/events/batch-graduation.webp'
   },
   {
     id: 7,
@@ -190,7 +190,7 @@ export const EVENTS_DATA = [
     location: 'Punjab Assembly, Lahore',
     category: 'Awards',
     description: 'Dr. Zahid Ghaffar Mirza and the PhysioGrow team had the privilege of an official meeting with Rana Muhammad Iqbal Khan at the Punjab Assembly. During the meeting, a commemorative artwork was presented, strengthening the partnership between PhysioGrow and government healthcare initiatives.',
-    image: '/assets/events/govt-recognition.jpg'
+    image: '/assets/events/govt-recognition.webp'
   },
   {
     id: 8,
@@ -199,7 +199,7 @@ export const EVENTS_DATA = [
     location: 'Lahore, Pakistan',
     category: 'Awards',
     description: 'The PhysioGrow team, including Dr. Zahid Mirza and Dr. Rumman Mehar, received a prestigious recognition award from the Government of Punjab. The official ceremony, held alongside government dignitaries, acknowledged PhysioGrow\'s commitment to excellence in physiotherapy services and professional healthcare education.',
-    image: '/assets/events/award-presentation.jpg'
+    image: '/assets/events/award-presentation.webp'
   },
   {
     id: 9,
@@ -208,7 +208,7 @@ export const EVENTS_DATA = [
     location: 'Lahore, Pakistan',
     category: 'Events',
     description: 'A proud moment as a PhysioGrow Academy graduate receives her certificate of completion, flanked by Dr. Rumman Mehar and Dr. Zahid Mirza. The evening celebration recognized the dedication and hard work of physiotherapy professionals who completed their advanced training program at PhysioGrow Academy.',
-    image: '/assets/events/certification-celebration.jpg'
+    image: '/assets/events/certification-celebration.webp'
   },
   {
     id: 10,
@@ -217,7 +217,7 @@ export const EVENTS_DATA = [
     location: 'Lahore, Pakistan',
     category: 'Events',
     description: 'A PhysioGrow Academy trainee proudly receives her course completion certificate from Dr. Rumman Mehar and Dr. Zahid Mirza at a rooftop ceremony in Lahore. The event celebrated the successful completion of advanced physiotherapy training, recognizing the graduates\' commitment to professional excellence.',
-    image: '/assets/events/rooftop-certificate.jpg'
+    image: '/assets/events/rooftop-certificate.webp'
   },
   {
     id: 11,
@@ -226,7 +226,7 @@ export const EVENTS_DATA = [
     location: 'Lahore, Pakistan',
     category: 'Awards',
     description: 'PhysioGrow Clinic & Academy received prominent media coverage in the Daily Beatab Lahore newspaper. The feature highlighted the inauguration of the rehabilitation center by Provincial Law Minister Rana Muhammad Iqbal Khan, recognizing PhysioGrow\'s commitment to providing quality healthcare and rehabilitation services for individuals with special needs.',
-    image: '/assets/events/newspaper-coverage.jpg'
+    image: '/assets/events/newspaper-coverage.webp'
   },
   {
     id: 12,
@@ -235,7 +235,7 @@ export const EVENTS_DATA = [
     location: 'Punjab Assembly, Lahore',
     category: 'Awards',
     description: 'Dr. Zahid Mirza and Dr. Rumman Mehar received official recognition certificates from Rana Muhammad Iqbal Khan at the Punjab Assembly in Lahore. The ceremony, held alongside the Pakistan and Punjab government flags, acknowledged PhysioGrow\'s outstanding contributions to physiotherapy education and patient care in Pakistan.',
-    image: '/assets/events/punjab-assembly-recognition.jpg'
+    image: '/assets/events/punjab-assembly-recognition.webp'
   },
   {
     id: 13,
@@ -244,7 +244,7 @@ export const EVENTS_DATA = [
     location: 'Afro-Asian Institute, Pakistan',
     category: 'Workshops',
     description: 'A participant receives her Certificate of Participation at the Dry Needling Workshop conducted at the Afro-Asian Institute. The workshop provided hands-on training in advanced trigger point dry needling techniques for physiotherapy professionals.',
-    image: '/assets/events/dry-needling-certificate.jpg'
+    image: '/assets/events/dry-needling-certificate.webp'
   },
   {
     id: 14,
@@ -253,7 +253,7 @@ export const EVENTS_DATA = [
     location: 'Afro-Asian Institute, Pakistan',
     category: 'Workshops',
     description: 'Dr. Zahid Mirza demonstrates advanced dry needling techniques during a live hands-on training session at the Afro-Asian Institute. Physiotherapy students and professionals observe the practical application of trigger point dry needling for pain management and musculoskeletal rehabilitation.',
-    image: '/assets/events/dry-needling-demo.jpg',
+    image: '/assets/events/dry-needling-demo.webp',
     video: '/assets/events/dr-needling.mp4'
   }
 ];

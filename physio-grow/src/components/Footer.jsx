@@ -48,7 +48,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <img 
-                src="/assets/logo.jpg" 
+                src="/assets/logo.webp" 
                 alt="PhysioGrow Clinic & Academy" 
                 className="w-10 h-10 rounded-lg object-cover"
                 width="40"

@@ -20,7 +20,7 @@ const Reviews = () => {
           {/* QR Code */}
           <div className="bg-white rounded-2xl shadow-lg p-6 inline-block mx-auto border border-border">
             <img
-              src="/assets/qr-code.jpg"
+              src="/assets/qr-code.webp"
               alt="Scan to leave a Google Review"
               className="w-56 h-56 mx-auto"
               loading="lazy"
